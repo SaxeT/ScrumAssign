@@ -1,6 +1,11 @@
 package com.nju.noter.controller;
 
+import com.nju.noter.service.UserService;
 import com.nju.noter.util.ResponseData;
+import com.nju.noter.vo.loginVO;
+import com.nju.noter.vo.newPasswordVO;
+import com.nju.noter.vo.newUserVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,33 +19,58 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 @RequestMapping(value = "/user")
 public class UserController {
+    @Autowired
+    UserService userService;
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData login(HttpRequest httpRequest, HttpServletResponse httpServletResponse){
-        ResponseData responseData = null;
-
-        if(responseData.isResult()){
-            Cookie cookie = new Cookie("ID", "todo");
-            cookie.setMaxAge(1000);
-            httpServletResponse.addCookie(cookie);
-        }
-
+    public ResponseData signup(newUserVO vo){
+        ResponseData responseData = userService.addUser(vo);
         return responseData;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData logout(HttpServletRequest request, HttpServletResponse response){
-        Cookie[] cookies = request.getCookies();
-
-        for (Cookie cookie: cookies) {
-            if (cookie.getName().equals("ID"))
-                cookie.setMaxAge(0);
-            response.addCookie(cookie);
-        }
-        return new ResponseData(true);
+    public ResponseData login(loginVO vo){
+        ResponseData responseData = userService.checkUser(vo);
+        return responseData;
     }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseData changePassword(newPasswordVO vo){
+        ResponseData responseData = userService.modifyUser(vo);
+        return responseData;
+    }
+
+//    cookie部分迭代二再做
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseData login(loginVO vo, HttpServletResponse httpServletResponse){
+//        ResponseData responseData = userService.checkUser(vo);
+//
+//        if(responseData.isResult()){
+//            Cookie cookie = new Cookie("ID", "");
+//            cookie.setMaxAge(1000);
+//            httpServletResponse.addCookie(cookie);
+//        }
+//
+//        return responseData;
+//    }
+//
+//    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ResponseData logout(HttpServletRequest request, HttpServletResponse response){
+//        Cookie[] cookies = request.getCookies();
+//
+//        for (Cookie cookie: cookies) {
+//            if (cookie.getName().equals("ID"))
+//                cookie.setMaxAge(0);
+//            response.addCookie(cookie);
+//        }
+//        return new ResponseData(true);
+//    }
+
 
 
 }
