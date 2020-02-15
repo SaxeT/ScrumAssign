@@ -14,14 +14,15 @@ public class testController {
     UserController userController;
 
     @RequestMapping(value = "/test")
-    public void getTest() {
+    public String getTest() {
 //        newUserVO vo = new newUserVO("a@b.c", "testAdd", "test");
 //        System.out.println(userController.signup(vo).getMessage());
 
 //        loginVO vo = new loginVO("a@b.c", "test");
 //        System.out.println(userController.login(vo).getMessage());
 
-        newPasswordVO vo = new newPasswordVO(3, "t", "test");
-        System.out.println(userController.changePassword(vo).getMessage());
+        // newPasswordVO vo = new newPasswordVO(3, "t", "test");
+        // System.out.println(userController.changePassword(vo).getMessage());
+        return "test";
     }
 }
