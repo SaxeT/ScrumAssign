@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.sql.Timestamp;
+
 
 @Entity
 @Table(name = "memo")
@@ -18,21 +19,25 @@ public class Memo {
     private String title;
 
     @Id
-    @Column(name = "date")
-    private Date date;
+    @Column(name = "time")
+    private Timestamp time;
 
     @Id
     @Column(name = "content")
     private String content;
 
+    @Column(name = "uid")
+    private int UID;
+
     public Memo() {
     }
 
-    public Memo(int ID, String title, Date date, String content) {
+    public Memo(int ID, String title, Timestamp time, String content, int UID) {
         this.ID = ID;
         this.title = title;
-        this.date = date;
+        this.time = time;
         this.content = content;
+        this.UID = UID;
     }
 
     public int getID() {
@@ -51,12 +56,12 @@ public class Memo {
         this.title = title;
     }
 
-    public Date getDate() {
-        return date;
+    public Timestamp getTime() {
+        return time;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setTime(Timestamp time) {
+        this.time = time;
     }
 
     public String getContent() {
@@ -65,5 +70,13 @@ public class Memo {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public int getUID() {
+        return UID;
+    }
+
+    public void setUID(int UID) {
+        this.UID = UID;
     }
 }
