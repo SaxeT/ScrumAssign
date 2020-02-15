@@ -14,15 +14,12 @@ public class Memo {
     @Column(name = "id")
     private int ID;
 
-    @Id
     @Column(name = "title")
     private String title;
 
-    @Id
     @Column(name = "time")
     private Timestamp time;
 
-    @Id
     @Column(name = "content")
     private String content;
 
