@@ -1,11 +1,12 @@
 package com.nju.noter.vo;
 
 public class NoteVO {
-    String title;
-    String content;
-    String category;
-    int UID;
-    int NBID;
+    private int ID = -1;
+    private String title;
+    private String content;
+    private String category;
+    private int UID;
+    private int NBID;
 
     public NoteVO(String title, String content, String category, int UID, int NBID) {
         this.title = title;
@@ -13,6 +14,23 @@ public class NoteVO {
         this.category = category;
         this.UID = UID;
         this.NBID = NBID;
+    }
+
+    public NoteVO(int ID, String title, String content, String category, int UID, int NBID) {
+        this.ID = ID;
+        this.title = title;
+        this.content = content;
+        this.category = category;
+        this.UID = UID;
+        this.NBID = NBID;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getTitle() {

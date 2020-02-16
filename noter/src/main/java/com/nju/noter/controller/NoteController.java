@@ -36,5 +36,26 @@ public class NoteController {
         return responseData;
     }
 
+    @RequestMapping(value = "/getNotesByCategory", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData getNotesByCategory(int userID, String category){
+        ResponseData responseData = noteService.getNotesByCategory(userID, category);
+        return responseData;
+    }
+
+    @RequestMapping(value = "/getNotesByNotebook", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData getNotesByNotebook(int userID, int notebookID){
+        ResponseData responseData = noteService.getNotesByNotebook(userID, notebookID);
+        return responseData;
+    }
+
+    @RequestMapping(value = "/deleteNote", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData deleteNote(int userID, int noteID){
+        ResponseData responseData = noteService.deleteNote(userID, noteID);
+        return responseData;
+    }
+
 
 }

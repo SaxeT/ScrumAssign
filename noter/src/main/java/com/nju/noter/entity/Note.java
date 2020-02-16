@@ -36,12 +36,11 @@ public class Note {
         this.NBID = NBID;
     }
 
-    public Note(int ID, String title, String content, String category, Timestamp time, int UID, int NBID) {
+    public Note(int ID, String title, String content, String category, int UID, int NBID) {
         this.ID = ID;
         this.title = title;
         this.content = content;
         this.category = category;
-        this.time = time;
         this.UID = UID;
         this.NBID = NBID;
     }

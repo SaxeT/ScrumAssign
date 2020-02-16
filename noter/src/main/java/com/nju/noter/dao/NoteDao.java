@@ -9,9 +9,11 @@ public interface NoteDao extends JpaRepository<Note, Integer> {
 
     List<Note> findByUID(int UID);
 
-    List<Note> findByTitle(String title);
+    List<Note> findByUIDAndCategory(int UID, String category);
 
-    List<Note> findByCategory(String category);
+    List<Note> findByUIDAndNBID(int UID, int NBID);
+
+    List<Note> findByTitle(String title);
 
     //findByTimestamp
 }
