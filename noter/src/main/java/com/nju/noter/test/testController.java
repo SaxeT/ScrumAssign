@@ -1,9 +1,6 @@
 package com.nju.noter.test;
 
 import com.nju.noter.controller.UserController;
-import com.nju.noter.vo.loginVO;
-import com.nju.noter.vo.newPasswordVO;
-import com.nju.noter.vo.newUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,4 +22,5 @@ public class testController {
         // System.out.println(userController.changePassword(vo).getMessage());
         return "test";
     }
+
 }

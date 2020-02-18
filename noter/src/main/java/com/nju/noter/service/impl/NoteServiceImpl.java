@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NoteServiceImpl implements NoteService {
@@ -51,13 +52,20 @@ public class NoteServiceImpl implements NoteService {
     public ResponseData<Note> getNote(int noteID) {
         ResponseData<Note> responseData = new ResponseData<>();
         try{
-            Note note = noteDao.findById(noteID).get();
-            responseData.setResult(true);
-            responseData.setData(note);
+            Optional optional = noteDao.findById(noteID);
+            Note note;
+            if (optional.isPresent()) {
+                note = (Note) optional.get();
+                responseData.setResult(true);
+                responseData.setData(note);
+            } else {
+                responseData.setResult(false);
+                responseData.setMessage("No matched note by noteID:"+noteID);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             responseData.setResult(false);
-            responseData.setMessage("未找到笔记!");
+            responseData.setMessage("Exception occurred");
         }
         return responseData;
     }
@@ -114,20 +122,28 @@ public class NoteServiceImpl implements NoteService {
     public ResponseData<String> deleteNote(int userID, int noteID) {
         ResponseData<String> responseData = new ResponseData<>();
         try{
-            Note note = noteDao.findById(noteID).get();
-            if (note.getUID() != userID) {
+            Optional optional = noteDao.findById(noteID);
+            Note note;
+            if (optional.isPresent()) {
+                note = (Note) optional.get();
+                if (note.getUID() != userID) {
+                    responseData.setResult(false);
+                    responseData.setMessage("note not belong to userID:"+userID);
+                } else{
+                    noteDao.deleteById(noteID);
+                    responseData.setResult(true);
+                    responseData.setMessage("delete succeed.");
+                }
+            } else {
                 responseData.setResult(false);
-                responseData.setMessage("note not belong to userID:"+userID);
-            } else{
-                noteDao.deleteById(noteID);
-                responseData.setResult(true);
-                responseData.setMessage("delete succeed.");
+                responseData.setMessage("No matched note by noteID:"+noteID);
             }
         } catch (Exception e) {
             e.printStackTrace();
             responseData.setResult(false);
-            responseData.setMessage("cannot find this noteID:"+noteID);
+            responseData.setMessage("Exception occurred");
         }
+
         return responseData;
     }
 
