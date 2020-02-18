@@ -2,13 +2,13 @@ package com.nju.noter.vo;
 
 import java.util.Date;
 
-public class MemoVO {
+public class memoVO {
     private int id;
     private String title;
     private Date date;
     private String content;
 
-    public MemoVO(int id, String title, Date date, String content) {
+    public memoVO(int id, String title, Date date, String content) {
         this.id = id;
         this.title = title;
         this.date = date;
