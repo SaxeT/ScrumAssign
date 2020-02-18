@@ -3,7 +3,7 @@ package com.nju.noter.service.impl;
 import com.nju.noter.dao.MemoDao;
 import com.nju.noter.service.MemoService;
 import com.nju.noter.util.ResponseData;
-import com.nju.noter.vo.MemoVO;
+import com.nju.noter.vo.memoVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,12 +13,12 @@ public class MemoServiceImpl implements MemoService {
     MemoDao memoDao;
 
     @Override
-    public ResponseData<String> addMemo(MemoVO vo) {
+    public ResponseData<String> addMemo(memoVO vo) {
         return null;
     }
 
     @Override
-    public ResponseData<String> modifyMemo(MemoVO vo) {
+    public ResponseData<String> modifyMemo(memoVO vo) {
         return null;
     }
 
