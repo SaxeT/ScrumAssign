@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService {
             }
         } catch (Exception e) {
             e.printStackTrace();
+//            LOGGER.log("context", e);
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
         }

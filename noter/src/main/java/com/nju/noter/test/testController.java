@@ -7,13 +7,14 @@ import com.nju.noter.vo.newUserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class testController {
     @Autowired
     UserController userController;
 
-    @RequestMapping(value = "/test")
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String getTest() {
 //        newUserVO vo = new newUserVO("a@b.c", "testAdd", "test");
 //        System.out.println(userController.signup(vo).getMessage());
