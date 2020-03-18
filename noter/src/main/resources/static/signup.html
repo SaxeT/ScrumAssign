@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Index</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="assets/img/icon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script src="assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['assets/css/fonts.min.css'] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+        function setCookie(name,value,expires){
+            var exp = new Date();
+            exp.setTime(exp.getTime() + expires*1000);
+            document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+        }
+        function submit(){
+            let mail = document.getElementById('email').value;
+            let name = document.getElementById('name').value;
+            let password = document.getElementById('password').value;
+            let con_password = document.getElementById('con_password').value;
+
+            if(mail===''){
+                document.getElementById("email_div").style.display = "none";
+                document.getElementById("no_email_div").style.display = "block";
+            }
+            if(name===''){
+                document.getElementById("name_div").style.display = "none";
+                document.getElementById("no_name_div").style.display = "block";
+            }
+            if(password===''){
+                document.getElementById("passwd_div").style.display = "none";
+                document.getElementById("no_passwd_div").style.display = "block";
+            }
+            if(con_password===''){
+                document.getElementById("con_passwd_div").style.display = "none";
+                document.getElementById("no_con_passwd_div").style.display = "block";
+            }
+
+            if(password!==con_password){
+                swal("Not Match!", "Password != Confirm Password", {
+                    icon : "error",
+                    buttons: {
+                        confirm: {
+                            text: "Noo",
+                            className : 'btn btn-danger'
+                        },
+                    },
+                });
+            }else {
+                console.log(mail, name, password);
+                $.ajax({
+                    url: "/user/signup",
+                    type: "post",
+                    data: {
+                        mail: mail,
+                        userName: name,
+                        password: password
+                    },
+                    success: function f(response){
+                        console.log(response);
+                        if(response.result===true){
+                            setCookie("id", response.data, 1000);
+                            swal("Sign Up!", response.message, {
+                                icon : "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "Yee",
+                                        className : 'btn btn-success'
+                                    },
+                                },
+                            }).then(function(){
+                                window.location.href = "login.html";
+                            });
+                        }else{
+                            swal("Error!", response.message, {
+                                icon : "error",
+                                buttons: {
+                                    confirm: {
+                                        className : 'btn btn-danger'
+                                    }
+                                },
+                            });
+                        }
+                    }
+                })
+            }
+        }
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/atlantis.min.css">
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <!-- <link rel="stylesheet" href="assets/css/demo.css"> -->
+</head>
+
+<body>
+    <div class="page-inner d-flex align-items-left align-items-md-center flex-column" style="margin-top: 5em;">
+        <div class="card col-md-4">
+            <div class="card-header">
+                <div class="card-head-row">
+                    <h4 class="card-title">Signup</h4>
+                </div>
+            </div>
+            <div class="card-body pb-4">
+                <div id="email_div" class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div id="no_email_div" class="form-group has-error has-feedback ui-helper-hidden">
+                    <label for="no_email">No Email Address</label>
+                    <input type="text" class="form-control" id="no_email" placeholder="Enter Email">
+                    <small id="emailHelp2" class="form-text text-muted text-danger">Please provide a valid informations.</small>
+                </div>
+                <div id="name_div" class="form-group">
+                    <label for="name">User Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="User Name">
+                </div>
+                <div id="no_name_div" class="form-group has-error has-feedback ui-helper-hidden">
+                    <label for="no_name">No User Name</label>
+                    <input type="text" class="form-control" id="no_name" placeholder="Enter Email">
+                    <small id="no_name_help" class="form-text text-muted text-danger">Please provide a valid informations.</small>
+                </div>
+                <div id="passwd_div" class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div id="no_passwd_div" class="form-group has-error has-feedback ui-helper-hidden">
+                    <label for="no_passwd">No Password</label>
+                    <input type="text" id="no_passwd" value="No Password" class="form-control">
+                    <small id="no_passwd_help" class="form-text text-muted text-danger">Please provide a valid informations.</small>
+                </div>
+                <div id="con_passwd_div" class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" class="form-control" id="con_password" placeholder="Confirm Password">
+                </div>
+                <div id="no_con_passwd_div" class="form-group has-error has-feedback ui-helper-hidden">
+                    <label for="no_con_passwd">No Confirm Password</label>
+                    <input type="text" id="no_con_passwd" value="No Confirm Password" class="form-control">
+                    <small id="no_con_passwd_help" class="form-text text-muted text-danger">Please provide a valid informations.</small>
+                </div>
+                <div class="card-action">
+                    <button class="btn btn-primary btn-border pull-right" style="margin-right: 2em;" onclick="submit()">
+                        <span class="btn-label">
+                            <i class="fa fa-plus"></i>
+                        </span>
+                        Sign
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

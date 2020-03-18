@@ -25,6 +25,7 @@ public class UserController {
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     @ResponseBody
     public ResponseData signup(newUserVO vo){
+        System.out.println(vo.toString());
         ResponseData responseData = userService.addUser(vo);
         return responseData;
     }
