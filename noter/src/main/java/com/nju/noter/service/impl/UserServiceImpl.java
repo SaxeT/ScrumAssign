@@ -4,9 +4,12 @@ import com.nju.noter.dao.UserDao;
 import com.nju.noter.entity.User;
 import com.nju.noter.service.UserService;
 import com.nju.noter.util.ResponseData;
+import com.nju.noter.util.Time;
 import com.nju.noter.vo.loginVO;
 import com.nju.noter.vo.newPasswordVO;
 import com.nju.noter.vo.newUserVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
 
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Override
     public ResponseData<String> addUser(newUserVO vo) {
         ResponseData<String> responseData = new ResponseData<>();
@@ -22,17 +27,18 @@ public class UserServiceImpl implements UserService {
             if (userDao.findByMail(vo.getMail())!=null){
                 responseData.setResult(false);
                 responseData.setMessage("User Exists!");
+                logger.error(Time.getCurrentTime()+"  "+ vo.getMail() + "  User Exists!");
             }else{
                 User user = new User(vo.getMail(), vo.getUserName(), vo.getPassword());
                 userDao.save(user);
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
+                logger.warn(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
-//            LOGGER.log("context", e);
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
+            logger.error(Time.getCurrentTime()+"  sSomething wrong!");
         }
         return responseData;
     }
