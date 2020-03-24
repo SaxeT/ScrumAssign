@@ -63,6 +63,15 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- add hot deploy support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.2.5.RELEASE</version>
+            <!-- use -->
+            <optional>true</optional>
+        </dependency>
+
     </dependencies>
 
     <build>

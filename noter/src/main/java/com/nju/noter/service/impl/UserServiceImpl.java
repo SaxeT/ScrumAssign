@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
                 responseData.setResult(false);
                 responseData.setMessage("User Exists!");
             }else{
-                User user = new User(vo.getMail(), vo.getPassword(), vo.getUserName());
+                User user = new User(vo.getMail(), vo.getUserName(), vo.getPassword());
                 userDao.save(user);
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
