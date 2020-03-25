@@ -36,9 +36,10 @@ public class UserServiceImpl implements UserService {
                 logger.warn(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
             }
         } catch (Exception e) {
+            e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
-            logger.error(Time.getCurrentTime()+"  sSomething wrong!");
+            logger.error(Time.getCurrentTime()+"  Something wrong!");
         }
         return responseData;
     }
