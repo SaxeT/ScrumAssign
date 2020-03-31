@@ -32,8 +32,10 @@ public interface NoteService {
 
     ResponseData<List<Note>> getNotesByTimestamps(int userID, Timestamp timestamp1, Timestamp timestamp2);
 
+    // Simditor
     // 前端各种字体修饰美化
     // 语音图片等
+
     // 共享
 
 }

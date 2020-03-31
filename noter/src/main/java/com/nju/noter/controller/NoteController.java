@@ -5,6 +5,7 @@ import com.nju.noter.util.ResponseData;
 import com.nju.noter.vo.NoteVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,7 +18,7 @@ public class NoteController {
 
     @RequestMapping(value = "/addNote", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseData addNote(NoteVO noteVO){
+    public ResponseData addNote(@RequestBody NoteVO noteVO){
         ResponseData responseData = noteService.addNote(noteVO);
         return responseData;
     }

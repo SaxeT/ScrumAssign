@@ -1,35 +1,39 @@
 package com.nju.noter.vo;
 
 public class NoteVO {
-    private int ID = -1;
+    private Integer ID = -1;
     private String title;
     private String content;
     private String category;
-    private int UID;
-    private int NBID;
+    private Integer uid;
+    private Integer nbid;
 
-    public NoteVO(String title, String content, String category, int UID, int NBID) {
+    public NoteVO(){
+
+    }
+
+    public NoteVO(String title, String content, String category, Integer UID, Integer nbid) {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.UID = UID;
-        this.NBID = NBID;
+        this.uid = UID;
+        this.nbid = nbid;
     }
 
-    public NoteVO(int ID, String title, String content, String category, int UID, int NBID) {
+    public NoteVO(int ID, String title, String content, String category, Integer UID, Integer nbid) {
         this.ID = ID;
         this.title = title;
         this.content = content;
         this.category = category;
-        this.UID = UID;
-        this.NBID = NBID;
+        this.uid = UID;
+        this.nbid = nbid;
     }
 
-    public int getID() {
+    public Integer getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 
@@ -57,19 +61,31 @@ public class NoteVO {
         this.category = category;
     }
 
-    public int getUID() {
-        return UID;
+    public Integer getuid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setuid(Integer UID) {
+        this.uid = UID;
     }
 
-    public int getNBID() {
-        return NBID;
+    public Integer getnbid() {
+        return nbid;
     }
 
-    public void setNBID(int NBID) {
-        this.NBID = NBID;
+    public void setnbid(Integer NBID) {
+        this.nbid = NBID;
+    }
+
+    @Override
+    public String toString() {
+        return "Note{" +
+                "ID=" + ID +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", category='" + category + '\'' +
+                ", UID=" + uid +
+                ", nbid=" + nbid +
+                '}';
     }
 }

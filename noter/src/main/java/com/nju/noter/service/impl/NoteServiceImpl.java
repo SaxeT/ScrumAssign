@@ -25,21 +25,22 @@ public class NoteServiceImpl implements NoteService {
             note = new Note(noteVO.getTitle(),
                     noteVO.getContent(),
                     noteVO.getCategory(),
-                    noteVO.getUID(),
-                    noteVO.getNBID());
+                    noteVO.getuid(),
+                    noteVO.getnbid()
+            );
         } else {
             note = new Note(noteVO.getID(),
                     noteVO.getTitle(),
                     noteVO.getContent(),
                     noteVO.getCategory(),
-                    noteVO.getUID(),
-                    noteVO.getNBID());
+                    noteVO.getuid(),
+                    noteVO.getnbid()
+            );
         }
 
         try{
-            Note notePO = noteDao.save(note);
+            noteDao.save(note);
             responseData.setResult(true);
-            responseData.setMessage(notePO.getID()+"");
         } catch (Exception e) {
             e.printStackTrace();
             responseData.setResult(false);
