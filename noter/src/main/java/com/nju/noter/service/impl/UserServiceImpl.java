@@ -31,9 +31,11 @@ public class UserServiceImpl implements UserService {
             }else{
                 User user = new User(vo.getMail(), vo.getUserName(), vo.getPassword());
                 userDao.save(user);
+                int UserID = userDao.findByMail(vo.getMail()).getID();
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
-                logger.warn(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
+                responseData.setData(String.valueOf(UserID));
+                logger.info(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -52,6 +54,7 @@ public class UserServiceImpl implements UserService {
             if (user==null){
                 responseData.setResult(false);
                 responseData.setMessage("There is No Such User!");
+                logger.error(Time.getCurrentTime()+"  "+ vo.getMail() + "  There is No Such User!");
             }
             else{
                 String password = user.getPassword();
@@ -59,16 +62,19 @@ public class UserServiceImpl implements UserService {
                     responseData.setResult(true);
                     responseData.setMessage("Success!");
                     responseData.setData(user.getID());
+                    logger.info(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
                 }
                 else{
                     responseData.setResult(false);
                     responseData.setMessage("Password Wrong!");
+                    logger.error(Time.getCurrentTime()+"  "+ vo.getMail() + " Password Wrong!");
                 }
             }
         }catch (Exception e){
             e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
+            logger.error(Time.getCurrentTime()+"  Something wrong!");
         }
         return responseData;
     }
@@ -84,15 +90,18 @@ public class UserServiceImpl implements UserService {
                 userDao.save(user);
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
+                logger.info(Time.getCurrentTime()+"  "+ vo.getID() + "  Success!");
             }
             else{
                 responseData.setResult(false);
                 responseData.setMessage("Old Password Wrong!");
+                logger.error(Time.getCurrentTime()+"  "+ vo.getID() + " Old Password Wrong!");
             }
         }catch (Exception e){
             e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
+            logger.error(Time.getCurrentTime()+"  Something wrong!");
         }
         return responseData;
     }
