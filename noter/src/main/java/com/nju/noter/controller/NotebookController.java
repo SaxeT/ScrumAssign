@@ -32,14 +32,14 @@ public class NotebookController {
     }
 
 
-    @PostMapping("/modify")
+    @RequestMapping(value = "/modify", method = RequestMethod.POST)
     @ResponseBody
     public ResponseData modify(modfiyNoteBookVO vo) {
         ResponseData responseData = notebookService.modifyNoteBook(vo);
         return responseData;
     }
 
-    @PostMapping("/delete")
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
     @ResponseBody
     public ResponseData delete(deleteNoteBookVO vo) {
         ResponseData responseData = notebookService.deleteNoteBook(vo);
