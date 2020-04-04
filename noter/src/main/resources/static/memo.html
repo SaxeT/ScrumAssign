@@ -3,12 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>Todo List</title>
+<!--    <link rel="stylesheet" href="assets/simditor/css/app.css">-->
+<!--    <link rel="stylesheet" href="assets/simditor/css/mobile.css">-->
+<!--    <link rel="stylesheet" href="assets/simditor/css/simditor.css">-->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/atlantis.min.css">
-    <link rel="stylesheet" href="/assets/node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="assets/node_modules/normalize.css/normalize.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/base.css">
     <link rel="stylesheet" type="text/css"
           href="/assets/node_modules/jquery-datetimepicker/build/jquery.datetimepicker.min.css">
+
 </head>
 <body>
 <div class="wrapper">
@@ -600,7 +604,7 @@
                 <form class="add-task">
 
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-7">
                             <input type="text"
                                    name="content"
                                    placeholder="e.g.早晨记得读英语！"
@@ -608,19 +612,18 @@
                                    autocomplete="off"
                             >
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <input type="text" class="datetimepicker" placeholder="提醒时间" required name="time">
                         </div>
-                        <div class="col-lg-2">
-                            <button type="submit" class="btn btn-primary"><span>submit</span></button>
+                    </div>
+                    <div class="row" style="margin-top: 20px">
+                        <div class="col-lg-10">
+                            <textarea name="detail" id="editor" placeholder="写点什么.."></textarea>
+                        </div>
+                        <div class="col-lg-2" >
+                            <button type="submit" class="btn btn-primary" style="position: absolute;bottom: 0;width: 80%"><span>submit</span></button>
                         </div>
                     </div>
-<!--                    <div class="row">-->
-<!--                        <div class="col-lg-10"></div>-->
-<!--                        <div class="col-lg-2">-->
-<!--                            <button type="submit" class="btn btn-primary"><span>submit</span></button>-->
-<!--                        </div>-->
-<!--                    </div>-->
 
 
                 </form>
@@ -645,6 +648,10 @@
 <script src="/assets/node_modules/_jquery@3.3.1@jquery/dist/jquery.js"></script>
 <script src="/assets/node_modules/store/store.js"></script>
 <script src="/assets/node_modules/jquery-datetimepicker/build/jquery.datetimepicker.full.min.js"></script>
+<script src="/assets/simditor/js/module.js"></script>
+<!--<script src="/assets/simditor/js/uploader.js"></script>-->
+<!--<script src="/assets/simditor/js/hotkeys.js"></script>-->
+<!--<script src="/assets/simditor/js/simditor.js"></script>-->
 <script type="text/javascript" src="/assets/js/base.js"></script>
 </body>
 </html>
