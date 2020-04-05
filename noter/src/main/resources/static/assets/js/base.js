@@ -299,6 +299,7 @@
         task_list.push(new_task);
         // 更新localStorage
         refreshTaskList();
+
         return true;
     }
 
