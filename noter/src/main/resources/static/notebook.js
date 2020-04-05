@@ -309,7 +309,7 @@ function  addNote() {
             if(flag) {
                 setCookie("notebookid",ID , 1000);
                 setCookie("notebookname", bookname , 1000);
-                window.location.href = "newnote.html";
+                window.location.href = "notelist.html";
             }
         }
     );

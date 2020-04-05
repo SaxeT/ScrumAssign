@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>笔记本管理</title>
+    <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+    <link rel="icon" href="assets/img/icon.ico" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="assets/js/plugin/webfont/webfont.min.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Lato:300,400,700,900"] },
+            custom: { "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"], urls: ['assets/css/fonts.min.css'] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+        function getCookie(name) {
+            var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+            if (arr = document.cookie.match(reg))
+                return unescape(arr[2]);
+            else
+                window.location.href = "login.html";
+        };
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/atlantis.min.css">
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="assets/css/demo.css">
+
+
+    <!-- 表格载入-->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
+</head>
+
+<body onload="getCookie('id')">
+<div class="wrapper">
+    <div class="main-header">
+        <!-- Logo Header -->
+        <div class="logo-header" data-background-color="blue">
+
+            <a href="index.html" class="logo">
+                <img src="assets/img/logo.svg" alt="navbar brand" class="navbar-brand">
+            </a>
+            <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse"
+                    data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon">
+						<em class="icon-menu"></em>
+					</span>
+            </button>
+            <button class="topbar-toggler more"><em class="icon-options-vertical"></em></button>
+            <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                    <em class="icon-menu"></em>
+                </button>
+            </div>
+        </div>
+        <!-- End Logo Header -->
+
+        <!-- Navbar Header -->
+        <nav class="navbar navbar-header navbar-expand-lg" data-background-color="blue2">
+
+            <div class="container-fluid">
+
+                <ul class="navbar-nav topbar-nav ml-md-auto align-items-center">
+
+
+                </ul>
+            </div>
+        </nav>
+        <!-- End Navbar -->
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar sidebar-style-2">
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+            <div class="sidebar-content">
+                <div class="user">
+                    <div class="avatar-sm float-left mr-2">
+                        <img src="assets/img/profile.jpg" alt="..." class="avatar-img rounded-circle">
+                    </div>
+                    <div class="info">
+                        <a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									Hizrian
+									<span class="user-level">Administrator</span>
+									<span class="caret"></span>
+								</span>
+                        </a>
+                        <div class="clearfix"></div>
+
+                        <div class="collapse in" id="collapseExample">
+                        </div>
+                    </div>
+                </div>
+                <ul class="nav nav-primary ">
+                    <li class="nav-item">
+                        <a href="notebook.html">
+                            <i class="fas fa-book"></i>
+                            <!--<i class="fas fa-pen-square"></i>-->
+                            <p>笔记本</p>
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="memo.html">
+                            <i class="fas fa-layer-group"></i>
+                            <p>Memo</p>
+                        </a>
+                    </li>
+
+                    <li class="mx-4 mt-2">
+                        <a href="newnote.html" class="btn btn-primary btn-block">
+                            <span class="btn-label mr-2">
+                                <em class="fas fa-pen-square"></em>
+                            </span>
+                            新建笔记
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <div class="main-panel">
+        <div class="content">
+            <div class="panel-header bg-primary-gradient">
+                <div class="page-inner py-5">
+                    <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row">
+                        <div>
+                            <h1 id="bookNameHead" class="text-white pb-2 fw-bold"></h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-inner mt--5">
+                <div class="row mt--4">
+                    <div class="col-md-3">
+                        <div class="card full-height">
+                            <div class="card-body">
+                                <div class="card-title">新增笔记</div>
+                                <div class="card-category">直接点击下方按钮, 丰富你的笔记列表</div>
+                                <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                                    <button type="button" class="btn btn-outline-primary fa fa-plus btn-lg">
+                                        <a href="/newnote.html">新增笔记</a> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="table-responsive table-borderless">
+                                        <table id="notetable"></table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<!--   Core JS Files   -->
+<script src="assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="assets/js/core/popper.min.js"></script>
+<script src="assets/js/core/bootstrap.min.js"></script>
+
+<!-- jQuery UI -->
+<script src="assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+
+<!-- jQuery Scrollbar -->
+<script src="assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
+
+<!-- Chart JS -->
+<script src="assets/js/plugin/chart.js/chart.min.js"></script>
+
+<!-- jQuery Sparkline -->
+<script src="assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+
+<!-- Chart Circle -->
+<script src="assets/js/plugin/chart-circle/circles.min.js"></script>
+
+<!-- Datatables -->
+<script src="assets/js/plugin/datatables/datatables.min.js"></script>
+
+<!-- Bootstrap Notify -->
+<script src="assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
+
+<!-- Sweet Alert -->
+<script src="assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+
+<!-- Atlantis JS -->
+<script src="assets/js/atlantis.min.js"></script>
+
+<!-- 表格载入 -->
+<script src="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.js"></script>
+
+<script>
+    var notebookname = getCookie('notebookname');
+    document.getElementById("bookNameHead").innerHTML = "正在管理笔记本: " + notebookname;
+
+    $(document).ready(function () {
+        $('#notetable').bootstrapTable({
+            ajax:function(request){                    //使用ajax请求
+                $.ajax({
+                    type:"GET",
+                    url:'/note/getNotesByNotebook',
+                    contentType:'application/x-www-form-urlencoded;charset=utf-8',
+                    dataType:'json',
+                    data:request.data,
+                    success:function (res) {
+                        console.log(res);
+                        request.success({
+                            row:res.data,
+                        });
+                        $('#notetable').bootstrapTable('load', res.data);
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                })
+            },
+            toolbar: '#toolbar',                //工具按钮用哪个容器
+            striped: true,                      //是否显示行间隔色
+            cache: false,                       //是否使用缓存，默认为true，所以一般情况下需要设置一下这个属性（*）
+            pagination: true,                   //是否显示分页（*）
+            sortable: true,                     //是否启用排序
+            queryParams: 'queryParams',         //传递参数（*）
+            sidePagination: "client",           //分页方式：client客户端分页，server服务端分页（*）
+            pageNumber:1,                       //初始化加载第一页，默认第一页
+            pageSize: 10,                       //每页的记录行数（*）
+            pageList: [10, 25, 50, 100],        //可供选择的每页的行数（*）
+            smartDisplay:false,
+            search: false,                      //是否显示表格搜索，此搜索是客户端搜索，不会进服务端，所以，个人感觉意义不大
+            strictSearch: true,
+            showColumns: false,                 //是否显示所有的列
+            showRefresh: false,                 //是否显示刷新按钮
+            minimumCountColumns: 2,             //最少允许的列数
+            clickToSelect: true,                //是否启用点击选中行
+            height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
+            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            showToggle:false,                   //是否显示详细视图和列表视图的切换按钮
+            cardView: false,                    //是否显示详细视图
+            detailView: false,                   //是否显示父子表
+            singleSelect: true,                  // 开启单选
+            columns: [
+                {
+                    checkbox: true,
+                    width:20,
+                },
+                {
+                    field:'id',
+                    title:'id',
+                    width:40,
+                    visible: false,
+                },
+                {
+                    field:'title',
+                    title:'笔记标题',
+                    width:80,
+
+                },{
+                    field:'category',
+                    title:'类别',
+                    width: 80
+                },
+                {
+                    field:'time',
+                    title:'最后修改时间',
+                    width:100
+                }
+            ],                     //列设置
+        });
+
+
+    })
+
+
+    //请求参数设置
+    function queryParams(params) {
+        var userID = getCookie('id');
+        var notebookID = getCookie('notebookid');
+        return {
+            userID: userID,
+            notebookID: notebookID
+
+        }
+    };
+
+</script>
+
+</body>
+
+</html>
