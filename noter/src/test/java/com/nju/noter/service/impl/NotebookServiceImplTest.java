@@ -31,6 +31,10 @@ class NotebookServiceImplTest {
         notebookService.addNewNoteBook(vo);
         listNoteBooksVO listvo = new listNoteBooksVO(1);
         assertTrue(notebookService.findAllNoteBook(listvo).getResult());
+
+        listNoteBooksVO listvo2 = new listNoteBooksVO(-1);
+        assertFalse(notebookService.findAllNoteBook(listvo2).getResult());
+
     }
 
     @Test
@@ -38,6 +42,9 @@ class NotebookServiceImplTest {
     void addNewNoteBook() {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         assertTrue(notebookService.addNewNoteBook(vo).getResult());
+
+        NoteBookVO vo2 = new NoteBookVO("bookname","description",-1);
+        assertFalse(notebookService.addNewNoteBook(vo2).getResult());
     }
 
     @Test
@@ -51,6 +58,10 @@ class NotebookServiceImplTest {
                 "description", "description",1);
         assertTrue(notebookService.modifyNoteBook(mod).getResult());
 
+        modfiyNoteBookVO mod2 = new modfiyNoteBookVO(ID,"bookname","bookname",
+                "description", "description",-1);
+        assertFalse(notebookService.modifyNoteBook(mod2).getResult());
+
     }
 
     @Test
@@ -62,5 +73,8 @@ class NotebookServiceImplTest {
         int ID = notebook.getID();
         deleteNoteBookVO del = new deleteNoteBookVO(ID,"bookname",1);
         assertTrue(notebookService.deleteNoteBook(del).getResult());
+
+        deleteNoteBookVO del2 = new deleteNoteBookVO(ID,"bookname",-1);
+        assertFalse(notebookService.deleteNoteBook(del2).getResult());
     }
 }
