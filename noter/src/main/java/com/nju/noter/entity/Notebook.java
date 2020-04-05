@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "notebook")
-public class Notebook {
+public class Notebook implements Comparable<Notebook> {
 
     @Id
     @Column(name = "id")
@@ -60,5 +60,12 @@ public class Notebook {
         this.bookname = bookname;
         this.description = description;
         this.UID = UID;
+    }
+
+    @Override
+    public int compareTo(Notebook o) {
+        if(this.getID() < o.getID()) return 1;
+        else if(this.getID() > o.getID()) return -1;
+        return 0;
     }
 }

@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -32,7 +34,9 @@ public class NotebookServiceImpl implements NotebookService {
         } else {
             try{
                 List<Notebook> notebooks = notebookDao.findByUID(vo.getUserId());
-                responseData.setData(notebooks);
+                ArrayList<Notebook> arrayList = new ArrayList<>(notebooks);
+                Collections.sort(arrayList);
+                responseData.setData(arrayList);
                 responseData.setMessage("已成功找到全部的笔记本");
                 responseData.setResult(true);
                 logger.warn(Time.getCurrentTime()+"  "+ vo.getUserId()  + "  已成功找到全部的笔记本");

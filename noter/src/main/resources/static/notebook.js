@@ -307,8 +307,8 @@ function  addNote() {
         dangerMode: true,
     }).then((flag) => {
             if(flag) {
-
                 setCookie("notebookid",ID , 1000);
+                setCookie("notebookname", bookname , 1000);
                 window.location.href = "newnote.html";
             }
         }
