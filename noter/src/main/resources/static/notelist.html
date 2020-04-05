@@ -290,6 +290,12 @@
                     field:'time',
                     title:'最后修改时间',
                     width:100
+                }, {
+                    field: 'id',
+                    title: '操作',
+                    width: 100,
+                    valign: 'middle',
+                    formatter: actionFormatter
                 }
             ],                     //列设置
         });
@@ -305,9 +311,26 @@
         return {
             userID: userID,
             notebookID: notebookID
-
         }
     };
+
+    //操作栏的格式化
+    function actionFormatter(value, row, index) {
+        var btnView = "<button type=\"button\" class=\"btn btn-outline-secondary\">";
+        var btnEdit = "<button type=\"button\" class=\"btn btn-outline-info\">";
+        var btnDel = "<button type=\"button\" class=\"btn btn-outline-danger\">";
+        var btnEnd = "</button>";
+
+        var id = value;
+        var result = "";
+        result += btnView + "查看" + btnEnd;
+        result += "&nbsp;&nbsp;";
+        result += btnEdit + "编辑" + btnEnd;
+        result += "&nbsp;&nbsp;";
+        result += btnDel + "删除" + btnEnd;
+
+        return result;
+    }
 
 </script>
 
