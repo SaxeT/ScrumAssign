@@ -6,15 +6,23 @@ CREATE TABLE `notebook` (
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `notebook_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (1, '英语学习', '学习英语 day day up', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (2, '美食记', '骗吃骗喝', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (3, '旅行', '沿途人文风景', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (4, '游戏', '每天都要玩玩玩', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (5, '追剧', '我剧荒了', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (6, '推理小说', '凶手就是你', 3);
-INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (10, '食谱', '开心小厨房 每天炒炒菜 每天都在进步', 3);
+
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (1, '英语学习', '学习英语 day day up', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (2, '美食记', '骗吃骗喝', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (3, '旅行', '沿途人文风景', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (4, '游戏', '每天都要玩玩玩', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (5, '追剧', '我剧荒了', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (6, '推理小说', '凶手就是你', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (7, '食谱', '开心小厨房 每天炒炒菜 每天都在进步', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (8, '宠物', '生活的好伙伴', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (9, '购物清单', '双十一大采购清单准备', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (10, '读书笔记', '书山有路勤为径，学海无涯苦作舟', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (11, '歌曲', '不要睡，起来嗨~', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (12, '都市怪谈', '都市怪谈都是真的！', 1);
+INSERT INTO `notebook`(`id`, `name`, `description`, `uid`) VALUES (11, '密码本', '记不住的密码通通放在这里', 1);
+
 
 CREATE TABLE `note` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
