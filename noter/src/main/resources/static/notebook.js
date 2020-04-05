@@ -101,20 +101,28 @@ $('#saveButton').click(function () {
             data: data,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据
-
-                swal("新增成功 ", {
-                    icon : "success",
-                    buttons: {
-                        confirm: {
-                            text: "Yee",
-                            className : 'btn btn-success'
+                if(result.result===true){
+                    swal("新增成功 ", {
+                        icon : "success",
+                        buttons: {
+                            confirm: {
+                                text: "Yee",
+                                className : 'btn btn-success'
+                            },
                         },
-                    },
-                }).then(function(){
-                    window.location.href = "notebook.html";
-                });
-
-
+                    }).then(function(){
+                        window.location.href = "notebook.html";
+                    });
+                }else{
+                    swal("新增失败!", result.message, {
+                        icon : "error",
+                        buttons: {
+                            confirm: {
+                                className : 'btn btn-danger'
+                            }
+                        },
+                    });
+                }
             },
             error: function () {
                 reset();
@@ -175,17 +183,28 @@ $('#editButton').click(function () {
             data: data,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据
-                swal("修改成功 ", {
-                    icon : "success",
-                    buttons: {
-                        confirm: {
-                            text: "Yee",
-                            className : 'btn btn-success'
+                if(result.result===true){
+                    swal("修改成功 ", {
+                        icon : "success",
+                        buttons: {
+                            confirm: {
+                                text: "Yee",
+                                className : 'btn btn-success'
+                            },
                         },
-                    },
-                }).then(function(){
-                    window.location.href = "notebook.html";
-                });
+                    }).then(function(){
+                        window.location.href = "notebook.html";
+                    });
+                }else{
+                    swal("修改失败!", result.message, {
+                        icon : "error",
+                        buttons: {
+                            confirm: {
+                                className : 'btn btn-danger'
+                            }
+                        },
+                    });
+                }
 
             },
             error: function () {
@@ -237,17 +256,29 @@ function userDel() {
                     data: data,
                     success: function (r) {
                         console.log(r);
-                        swal("删除成功 ", {
-                            icon : "success",
-                            buttons: {
-                                confirm: {
-                                    text: "Yee",
-                                    className : 'btn btn-success'
+                        if(r.result===true){
+                            swal("删除成功 ", {
+                                icon : "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "Yee",
+                                        className : 'btn btn-success'
+                                    },
                                 },
-                            },
-                        }).then(function(){
-                            window.location.href = "notebook.html";
-                        });
+                            }).then(function(){
+                                window.location.href = "notebook.html";
+                            });
+                        }else{
+                            swal("删除失败", r.message, {
+                                icon : "error",
+                                buttons: {
+                                    confirm: {
+                                        className : 'btn btn-danger'
+                                    }
+                                },
+                            });
+                        }
+
                     }
                 });
             }
