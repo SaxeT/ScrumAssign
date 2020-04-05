@@ -248,10 +248,6 @@
             singleSelect: true,                  // 开启单选
             columns: [
                 {
-                    checkbox: true,
-                    width:20,
-                },
-                {
                     field:'id',
                     title:'id',
                     width:40,
@@ -298,11 +294,13 @@
 
     //操作栏的格式化
     function actionFormatter(value, row, index) {
+        var title = row.title;
         var btnView = "<button type=\"button\" class=\"btn btn-outline-secondary\">";
         var btnEdit = "<button type=\"button\" class=\"btn btn-outline-info\">";
-        var btnDel = "<button type=\"button\" class=\"btn btn-outline-danger\">";
+        var btnDel = "<button type=\"button\" class=\"btn btn-outline-danger\" onclick=\"delNote('" + row.id +"','" + title + "')\" >";
         var btnEnd = "</button>";
 
+        console.log("Btn : " + row.id + " " + row.title);
         var result = "";
         result += btnView + "查看" + btnEnd;
         result += "&nbsp;&nbsp;";
@@ -319,6 +317,64 @@
         result = value.substring(0,19);
         return result;
     };
+
+    function  delNote(noteID, title) {
+        var userID = getCookie('id');
+        var noteID = noteID;
+        var title = title;
+        console.log(noteID + " " + title);
+        var data = {"userID": userID , "noteID": noteID};
+
+        swal({
+            title: "删除确认",
+            text: "确定要删除笔记: " + title + " ?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        }).then((flag) => {
+                if(flag) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/note/deleteNote",
+                        contentType: "application/x-www-form-urlencoded;charset=utf-8",
+                        data: data,
+                        success: function (r) {
+                            console.log(r);
+                            if(r.result===true){
+                                swal("删除成功 ", {
+                                    icon : "success",
+                                    buttons: {
+                                        confirm: {
+                                            text: "Yee",
+                                            className : 'btn btn-success'
+                                        },
+                                    },
+                                }).then(function(){
+                                    window.location.href = "notelist.html";
+                                });
+                            }else{
+                                swal("删除失败", r.message, {
+                                    icon : "error",
+                                    buttons: {
+                                        confirm: {
+                                            className : 'btn btn-danger'
+                                        }
+                                    },
+                                });
+                            }
+
+                        }
+                    });
+                }
+            }
+        );
+    }
+
+    function setCookie(name,value,expires){
+        let exp = new Date();
+        exp.setTime(exp.getTime() + expires*1000);
+        document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+    }
 
 </script>
 
