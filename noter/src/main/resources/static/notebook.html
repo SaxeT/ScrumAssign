@@ -122,6 +122,7 @@
                             新建笔记
                         </a>
                     </li>
+
                 </ul>
             </div>
         </div>
@@ -137,17 +138,17 @@
                             <h2 class="text-white pb-2 fw-bold">笔记本</h2>
                             <h5 class="text-white op-7 mb-2">管理你的笔记本</h5>
                         </div>
-                       <!-- <div class="ml-md-auto py-2 py-md-0">
-                            <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
-                            <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
-                        </div>
-                        -->
+                        <!-- <div class="ml-md-auto py-2 py-md-0">
+                             <a href="#" class="btn btn-white btn-border btn-round mr-2">Manage</a>
+                             <a href="#" class="btn btn-secondary btn-round">Add Customer</a>
+                         </div>
+                         -->
                     </div>
                 </div>
             </div>
             <div class="page-inner mt--5">
-                <div class="row mt--3">
-                    <div class="col-md-4">
+                <div class="row mt--4">
+                    <div class="col-md-3">
                         <div class="card full-height">
                             <div class="card-body">
                                 <div class="card-title">新增笔记本</div>
@@ -159,7 +160,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card full-height">
                             <div class="card-body">
                                 <div class="card-title">修改笔记本</div>
@@ -171,18 +172,31 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card full-height">
-                        <div class="card-body">
-                            <div class="card-title">删除笔记本</div>
-                            <div class="card-category"> 选中笔记本所在行, 并点击按钮进行删除
-                            </div>
-                            <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                                <button button type="button" class="btn btn-outline-danger fa fa-trash btn-lg" onclick="userDel()">
-                                    删除笔记本 </button>
+                            <div class="card-body">
+                                <div class="card-title">删除笔记本</div>
+                                <div class="card-category"> 选中笔记本所在行, 并点击按钮进行删除
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                                    <button button type="button" class="btn btn-outline-danger fa fa-trash btn-lg" onclick="userDel()">
+                                        删除笔记本 </button>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3">
+                        <div class="card full-height">
+                            <div class="card-body">
+                                <div class="card-title">管理下属笔记</div>
+                                <div class="card-category"> 选择笔记本, 点击按钮对下属笔记进行管理
+                                </div>
+                                <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
+                                    <button button type="button" class="btn btn-outline-success fa fa-edit btn-lg" onclick="addNote()">
+                                        管理下属笔记 </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -192,7 +206,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="table-responsive table-borderless">
-                                    <table id="booktable"></table>
+                                        <table id="booktable"></table>
                                     </div>
                                 </div>
                             </div>

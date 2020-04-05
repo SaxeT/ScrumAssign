@@ -29,6 +29,7 @@ function reset() {
  */
 function reload() {
     reset();
+    // window.location.href = "notebook.html";
 }
 
 
@@ -57,7 +58,11 @@ function getCookie(name) {
         window.location.href = "login.html";
 };
 
-
+function setCookie(name,value,expires){
+    let exp = new Date();
+    exp.setTime(exp.getTime() + expires*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
 
 /* 新增笔记本 */
 function userAdd() {
@@ -97,12 +102,18 @@ $('#saveButton').click(function () {
             success: function (result) {
                 console.log(result);//打印服务端返回的数据
 
-                    swal("保存成功", {
-                        icon: "success",
-                    });
-                    $('#modalAdd').modal('hide');
-                    //reload
-                    reload();
+                swal("新增成功 ", {
+                    icon : "success",
+                    buttons: {
+                        confirm: {
+                            text: "Yee",
+                            className : 'btn btn-success'
+                        },
+                    },
+                }).then(function(){
+                    window.location.href = "notebook.html";
+                });
+
 
             },
             error: function () {
@@ -164,12 +175,17 @@ $('#editButton').click(function () {
             data: data,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据
-                    swal("修改成功", {
-                        icon: "success",
-                    });
-                    $('#modalEdit').modal('hide');
-                    //reload
-                    reload();
+                swal("修改成功 ", {
+                    icon : "success",
+                    buttons: {
+                        confirm: {
+                            text: "Yee",
+                            className : 'btn btn-success'
+                        },
+                    },
+                }).then(function(){
+                    window.location.href = "notebook.html";
+                });
 
             },
             error: function () {
@@ -177,6 +193,7 @@ $('#editButton').click(function () {
                 swal(result.message, {
                     icon: "error",
                 });
+
             }
         });
 
@@ -220,13 +237,50 @@ function userDel() {
                     data: data,
                     success: function (r) {
                         console.log(r);
-                            swal("删除成功", {
-                                icon: "success",
-                            });
+                        swal("删除成功 ", {
+                            icon : "success",
+                            buttons: {
+                                confirm: {
+                                    text: "Yee",
+                                    className : 'btn btn-success'
+                                },
+                            },
+                        }).then(function(){
+                            window.location.href = "notebook.html";
+                        });
                     }
                 });
             }
         }
     );
+}
+
+
+/* 新增笔记  */
+function  addNote() {
+    var row=$("#booktable").bootstrapTable('getSelections');
+    if(row.length < 1) {
+        swal("请先选中一个笔记本", {
+            icon: "error",
+        });
+    }
+
+    var ID = row[0].id;
+    var bookname = row[0].bookname;
+
+
+    swal("选中笔记本: ", bookname, {
+        icon : "success",
+        buttons: {
+            confirm: {
+                text: "Yee",
+                className : 'btn btn-success'
+            },
+        },
+    }).then(function(){
+        setCookie("notebookid",ID , 1000);
+        window.location.href = "newnote.html";
+    });
+
 }
 
