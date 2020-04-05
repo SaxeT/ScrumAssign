@@ -39,19 +39,19 @@ CREATE TABLE `note` (
   CONSTRAINT `note_ibfk_2` FOREIGN KEY (`nbid`) REFERENCES `notebook` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
-INSERT INTO `note` VALUES
-(1,'English Note','something just like this','学习','2020-02-15 08:46:57',1,1),
-(2,'厨师长农国栋','蛋炒饭','生活','2020-02-15 08:46:57',1,2),
-(3,'日本','旅行计划','生活','2020-02-15 08:46:57',1,3),
-(5,'刺激战场','我有98K','娱乐','2020-02-15 08:46:57',2,4),
-(6,'华农兄弟','烤竹鼠','美食','2020-02-15 08:47:05',2,4),
-(15,'qv','<p>re</p>','学习','2020-03-30 15:17:32',1,1),
-(16,'eqf','<p>fqereqrfe</p>','学习','2020-03-30 15:19:23',1,1),
-(17,'we','<p>dwe</p>','学习','2020-03-30 15:22:17',1,1),
-(18,'q fe q f','<p>反而丰富</p>','学习','2020-03-30 15:23:59',1,1),
-(19,'q fe q f','<p><b>ef</b>q<i>eqegr</i>q4<u>grqergko</u>rn<strike>ognergnoernge</strike></p>','学习','2020-03-30 15:25:28',1,1),
-(20,'试一试','<blockquote><p>成功保存把！</p></blockquote>','学习','2020-03-30 16:12:07',1,1),
-(21,'wdwd','<p>dqwdw</p>','学习','2020-03-30 16:12:51',1,1),
-(22,'wdw','<p>dwdwdewde</p>','学习','2020-03-30 16:15:06',1,1),
-(23,'dwd','<p>wd22d</p>','学习','2020-03-30 16:16:34',1,1),
-(24,'reqr','<p>fqe</p>','学习','2020-03-30 16:17:49',1,1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (1, 'English Note', 'something just like this', '学习', '2020-02-15 08:46:57', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (2, '厨师长农国栋', '蛋炒饭', '生活', '2020-02-15 08:46:57', 1, 2);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (3, '日本', '旅行计划', '生活', '2020-02-15 08:46:57', 1, 3);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (5, '刺激战场', '我有98K', '娱乐', '2020-02-15 08:46:57', 2, 4);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (6, '华农兄弟', '烤竹鼠', '美食', '2020-02-15 08:47:05', 2, 4);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (15, '单词背诵', '<p>re</p>', '学习', '2020-04-06 04:06:31', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (16, '六级听力', '<p>fqereqrfe</p>', '学习', '2020-04-06 04:06:36', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (17, '六级词汇', '<p>dwe</p>', '学习', '2020-04-06 04:06:40', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (18, '六级写作', '<p>反而丰富</p>', '学习', '2020-04-06 04:06:45', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (19, '六级口语', '<p><b>ef</b>q<i>eqegr</i>q4<u>grqergko</u>rn<strike>ognergnoernge</strike></p>', '学习', '2020-04-06 04:06:51', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (20, '雅思写作', '<blockquote><p>成功保存把！</p></blockquote>', '学习', '2020-04-06 04:06:57', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (21, '雅思听力', '<p>dqwdw</p>', '学习', '2020-04-06 04:07:01', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (22, '雅思词汇', '<p>dwdwdewde</p>', '学习', '2020-04-06 04:07:05', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (23, '雅思口语', '<p>wd22d</p>', '学习', '2020-04-06 04:07:08', 1, 1);
+INSERT INTO `note`(`id`, `title`, `content`, `category`, `time`, `uid`, `nbid`) VALUES (24, '网课资料', '<p>fqe</p>', '学习', '2020-04-06 04:07:26', 1, 1);
+

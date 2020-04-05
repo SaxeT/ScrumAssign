@@ -31,9 +31,6 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/atlantis.min.css">
 
-    <!-- CSS Just for demo purpose, don't include it in your project -->
-    <link rel="stylesheet" href="assets/css/demo.css">
-
 
     <!-- 表格载入-->
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.15.3/dist/bootstrap-table.min.css">
@@ -115,12 +112,7 @@
                     </li>
 
                     <li class="mx-4 mt-2">
-                        <a href="newnote.html" class="btn btn-primary btn-block">
-                            <span class="btn-label mr-2">
-                                <em class="fas fa-pen-square"></em>
-                            </span>
-                            新建笔记
-                        </a>
+
                     </li>
 
                 </ul>
@@ -137,26 +129,15 @@
                         <div>
                             <h1 id="bookNameHead" class="text-white pb-2 fw-bold"></h1>
                         </div>
+                        <div class="ml-md-auto py-2 py-md-0">
+                            <a href="/newnote.html" class="btn btn-white btn-border btn-round mr-2 fa fa-code btn-lg">
+                                &nbsp;&nbsp;新增笔记
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="page-inner mt--5">
-                <div class="row mt--4">
-                    <div class="col-md-3">
-                        <div class="card full-height">
-                            <div class="card-body">
-                                <div class="card-title">新增笔记</div>
-                                <div class="card-category">直接点击下方按钮, 丰富你的笔记列表</div>
-                                <div class="d-flex flex-wrap justify-content-around pb-2 pt-4">
-                                    <button type="button" class="btn btn-outline-primary fa fa-plus btn-lg">
-                                        <a href="/newnote.html">新增笔记</a> </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -279,17 +260,18 @@
                 {
                     field:'title',
                     title:'笔记标题',
-                    width:80,
+                    width:40,
 
                 },{
                     field:'category',
                     title:'类别',
-                    width: 80
+                    width: 40
                 },
                 {
                     field:'time',
                     title:'最后修改时间',
-                    width:100
+                    width:80,
+                    formatter:timeFormatter
                 }, {
                     field: 'id',
                     title: '操作',
@@ -321,7 +303,6 @@
         var btnDel = "<button type=\"button\" class=\"btn btn-outline-danger\">";
         var btnEnd = "</button>";
 
-        var id = value;
         var result = "";
         result += btnView + "查看" + btnEnd;
         result += "&nbsp;&nbsp;";
@@ -330,7 +311,14 @@
         result += btnDel + "删除" + btnEnd;
 
         return result;
-    }
+    };
+
+    //  时间栏的格式化
+    function timeFormatter(value, row, index) {
+        var result = "";
+        result = value.substring(0,19);
+        return result;
+    };
 
 </script>
 
