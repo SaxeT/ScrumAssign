@@ -4,7 +4,10 @@ import com.nju.noter.dao.NoteDao;
 import com.nju.noter.entity.Note;
 import com.nju.noter.service.NoteService;
 import com.nju.noter.util.ResponseData;
+import com.nju.noter.util.Time;
 import com.nju.noter.vo.NoteVO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,8 @@ import java.util.Optional;
 public class NoteServiceImpl implements NoteService {
     @Autowired
     NoteDao noteDao;
+
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
     public ResponseData<String> addNote(NoteVO noteVO) {
@@ -42,7 +47,8 @@ public class NoteServiceImpl implements NoteService {
             noteDao.save(note);
             responseData.setResult(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to create Note: "+ noteVO.toString()+
+                    " "+ e.getMessage());
             responseData.setResult(false);
             responseData.setMessage("添加失败!");
         }
@@ -61,12 +67,13 @@ public class NoteServiceImpl implements NoteService {
                 responseData.setData(note);
             } else {
                 responseData.setResult(false);
-                responseData.setMessage("No matched note by noteID:"+noteID);
+                responseData.setMessage("未找到该笔记ID:"+noteID);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to get note. noteID:"+ noteID+
+                    " "+ e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("Exception occurred");
+            responseData.setMessage("获取笔记失败");
         }
         return responseData;
     }
@@ -77,12 +84,13 @@ public class NoteServiceImpl implements NoteService {
         try{
             List<Note> list = noteDao.findByUID(userID);
             responseData.setResult(true);
-            responseData.setMessage("note size:"+list.size());
+            responseData.setMessage("笔记数量:"+list.size());
             responseData.setData(list);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to get all notes for userID:"+ userID +
+                    " "+ e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("Something's wrong!");
+            responseData.setMessage("获取失败!");
         }
         return responseData;
     }
@@ -93,12 +101,13 @@ public class NoteServiceImpl implements NoteService {
         try{
             List<Note> list = noteDao.findByUIDAndCategory(userID, category);
             responseData.setResult(true);
-            responseData.setMessage("note size:"+list.size());
+            responseData.setMessage("数量:"+list.size());
             responseData.setData(list);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to get all notes by category for userID:"+ userID +
+                    ", category:" + category + " " + e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("Something's wrong!");
+            responseData.setMessage("获取失败!");
         }
         return responseData;
     }
@@ -109,12 +118,13 @@ public class NoteServiceImpl implements NoteService {
         try{
             List<Note> list = noteDao.findByUIDAndNBID(userID, notebookID);
             responseData.setResult(true);
-            responseData.setMessage("note size:"+list.size());
+            responseData.setMessage("数量:"+list.size());
             responseData.setData(list);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to get all notes in a notebook for userID:"+ userID +
+                    ", notebookID:" + notebookID + " " + e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("Something's wrong!");
+            responseData.setMessage("获取失败!");
         }
         return responseData;
     }
@@ -129,20 +139,21 @@ public class NoteServiceImpl implements NoteService {
                 note = (Note) optional.get();
                 if (note.getUID() != userID) {
                     responseData.setResult(false);
-                    responseData.setMessage("note not belong to userID:"+userID);
+                    responseData.setMessage("删除失败!该笔记不属于用户:"+userID);
                 } else{
                     noteDao.deleteById(noteID);
                     responseData.setResult(true);
-                    responseData.setMessage("delete succeed.");
+                    responseData.setMessage("删除成功");
                 }
             } else {
                 responseData.setResult(false);
-                responseData.setMessage("No matched note by noteID:"+noteID);
+                responseData.setMessage("未找到该笔记:"+noteID);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(Time.getCurrentTime()+" Failed to delete note for userID:"+ userID +
+                    ", noteID:" + noteID + " " + e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("Exception occurred");
+            responseData.setMessage("删除失败!");
         }
 
         return responseData;
