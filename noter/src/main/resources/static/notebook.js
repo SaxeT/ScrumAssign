@@ -299,19 +299,21 @@ function  addNote() {
     var ID = row[0].id;
     var bookname = row[0].bookname;
 
+    swal({
+        title: "选择确认",
+        text: "选择笔记本: " + bookname + " ?",
+        icon: "success",
+        buttons: true,
+        dangerMode: true,
+    }).then((flag) => {
+            if(flag) {
 
-    swal("选中笔记本: ", bookname, {
-        icon : "success",
-        buttons: {
-            confirm: {
-                text: "Yee",
-                className : 'btn btn-success'
-            },
-        },
-    }).then(function(){
-        setCookie("notebookid",ID , 1000);
-        window.location.href = "newnote.html";
-    });
+                setCookie("notebookid",ID , 1000);
+                window.location.href = "newnote.html";
+            }
+        }
+    );
+
 
 }
 
