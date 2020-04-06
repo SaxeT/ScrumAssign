@@ -1,7 +1,7 @@
 package com.nju.noter.vo;
 
 public class NoteVO {
-    private Integer ID = -1;
+    private Integer id = -1;
     private String title;
     private String content;
     private String category;
@@ -20,8 +20,8 @@ public class NoteVO {
         this.nbid = nbid;
     }
 
-    public NoteVO(int ID, String title, String content, String category, Integer UID, Integer nbid) {
-        this.ID = ID;
+    public NoteVO(int id, String title, String content, String category, Integer UID, Integer nbid) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
@@ -29,12 +29,12 @@ public class NoteVO {
         this.nbid = nbid;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -80,7 +80,7 @@ public class NoteVO {
     @Override
     public String toString() {
         return "Note{" +
-                "ID=" + ID +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category='" + category + '\'' +

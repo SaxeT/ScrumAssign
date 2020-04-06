@@ -26,16 +26,25 @@ function save(){
     var strCookie=document.cookie;
     //将多cookie切割为多个名/值对
     var arrCookie=strCookie.split("; ");
-    var userId;
+    var userID;
     //遍历cookie数组，处理每个cookie对
     for(var i=0;i<arrCookie.length;i++){
         var arr=arrCookie[i].split("=");
         //找到名称为userId的cookie，并返回它的值
         if("id"==arr[0]){
-            userId=arr[1];
+            userID=arr[1];
             break;
         }
     }
+    var noteID = getQueryVariable("noteID");
+    if (!noteID) {
+        noteID = -1;
+    }
+    var notebookID = getQueryVariable("notebookID");
+    if (!notebookID) {
+        notebookID = -1;
+    }
+
 
     $.ajax({
         url: "/note/addNote",
@@ -45,11 +54,12 @@ function save(){
             title: title,
             content: content,
             category: "学习",  //category,
-            uid: 1,
-            nbid: 1 //nbid
+            uid: userID,
+            nbid: notebookID ,
+            id: noteID
         }),
         success: function f(response){
-            console.log(response);
+            // console.log(response);
             if(response.result===true){
                 // setCookie("id", response.data, 1000);
                 swal("保存成功!", response.message, {
@@ -58,10 +68,13 @@ function save(){
                         confirm: {
                             text: "确定",
                             className : 'btn btn-success'
-                        },
-                    },
+                        }
+                    }
                 }).then(function(){
-                    // window.location.href = "index.html";
+                    console.log(response);
+                    noteID = response.data.id;
+                    notebookID = response.data.nbid;
+                    window.location.href = "newNote.html?notebookID="+notebookID+"&noteID="+noteID;
                 });
             }else{
                 swal("失败!", response.message, {
@@ -75,4 +88,15 @@ function save(){
             }
         }
     })
+}
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
 }

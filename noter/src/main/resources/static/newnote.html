@@ -22,8 +22,7 @@
             var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
 
             if (arr = document.cookie.match(reg))
-                return unescape123(arr[2]); //方便测试，记得去掉
-                // return unescape(arr[2]);
+                return unescape(arr[2]);
             else
                 window.location.href = "login.html";
         };
@@ -380,10 +379,10 @@
                             <h2 class="text-white pb-2 fw-bold">敏捷笔记</h2>
                             <h5 class="text-white op-7 mb-2">一种简单的记录方式</h5>
                         </div>
-                        <div class="ml-md-auto py-2 py-md-0">
-                            <a href="#" class="btn btn-white btn-border btn-round mr-2">管理</a>
-                            <a href="#" class="btn btn-secondary btn-round">另存为…</a>
-                        </div>
+                        <!--<div class="ml-md-auto py-2 py-md-0">-->
+                            <!--<a href="#" class="btn btn-white btn-border btn-round mr-2">管理</a>-->
+                            <!--<a href="#" class="btn btn-secondary btn-round">另存为…</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -395,7 +394,8 @@
                             <div class="card-header">
                                 <div class="card-head-row card-tools-still-right">
                                     <form class="navbar-left navbar-form nav-search mr-md-3">
-                                        <input type="text" id="note_title" placeholder="笔记标题" class="form-control mr-md-0">
+                                        <input type="text" placeholder="笔记标题" id="note_title" class="form-control mr-md-0">
+
                                     </form>
                                     <div class="card-tools">
                                         <button class="btn btn-icon btn-link btn-primary btn-xs"><span
@@ -571,107 +571,48 @@
 <!-- Atlantis DEMO methods, don't include it in your project! -->
 <script src="assets/js/setting-demo.js"></script>
 <script src="assets/js/demo.js"></script>
-<script>
-    Circles.create({
-        id: 'circles-1',
-        radius: 45,
-        value: 60,
-        maxValue: 100,
-        width: 7,
-        text: 5,
-        colors: ['#f1f1f1', '#FF9E27'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
 
-    Circles.create({
-        id: 'circles-2',
-        radius: 45,
-        value: 70,
-        maxValue: 100,
-        width: 7,
-        text: 36,
-        colors: ['#f1f1f1', '#2BB930'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
-
-    Circles.create({
-        id: 'circles-3',
-        radius: 45,
-        value: 40,
-        maxValue: 100,
-        width: 7,
-        text: 12,
-        colors: ['#f1f1f1', '#F25961'],
-        duration: 400,
-        wrpClass: 'circles-wrp',
-        textClass: 'circles-text',
-        styleWrapper: true,
-        styleText: true
-    })
-
-    var totalIncomeChart = document.getElementById('totalIncomeChart').getContext('2d');
-
-    var mytotalIncomeChart = new Chart(totalIncomeChart, {
-        type: 'bar',
-        data: {
-            labels: ["S", "M", "T", "W", "T", "F", "S", "S", "M", "T"],
-            datasets: [{
-                label: "Total Income",
-                backgroundColor: '#ff9e27',
-                borderColor: 'rgb(23, 125, 255)',
-                data: [6, 4, 9, 5, 4, 6, 4, 3, 8, 10],
-            }],
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            legend: {
-                display: false,
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        display: false //this will remove only the label
-                    },
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }],
-                xAxes: [{
-                    gridLines: {
-                        drawBorder: false,
-                        display: false
-                    }
-                }]
-            },
-        }
-    });
-
-    $('#lineChart').sparkline([105, 103, 123, 100, 95, 105, 115], {
-        type: 'line',
-        height: '70',
-        width: '100%',
-        lineWidth: '2',
-        lineColor: '#ffa534',
-        fillColor: 'rgba(255, 165, 52, .14)'
-    });
-</script>
-<script>
-    var editor = new Simditor({
-        textarea: $('#editor')
-        // placeholder: '写点什么...'
-    });
-</script>
 <script src="newnote.js"></script>
+<script>
+
+    var noteID = getQueryVariable("noteID");
+    // console.log(noteID);
+    var content = null;
+
+    if(noteID !== false) {
+        $.ajax({
+            url: "/note/getNote",
+            type: "GET",
+            contentType: "application/json",
+            data: {
+                noteID: noteID
+            },
+            success: function f(response){
+                console.log(response.data);
+
+                titleName = response.data.title;
+                content = response.data.content;
+
+                $("#note_title").attr('value', titleName);
+                $('#editor').val(content);
+
+                var editor = new Simditor({
+                    textarea: $('#editor'),
+                });
+
+
+            }
+        });
+    } else {
+        var editor = new Simditor({
+            textarea: $('#editor')
+        });
+    }
+
+</script>
+
+
+
 
 </body>
 </html>

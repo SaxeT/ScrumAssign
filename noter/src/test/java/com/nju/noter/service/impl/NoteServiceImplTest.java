@@ -62,6 +62,11 @@ public class NoteServiceImplTest {
     }
 
     @Test
+    void testDeleteNotebook(){
+        noteService.deleteNotebook(1, 1);
+    }
+
+    @Test
     void testGetNotesByTitle(){
         ResponseData responseData1 = noteService.getNotesByTitle(1, "English note");
         assertTrue(responseData1.getResult());

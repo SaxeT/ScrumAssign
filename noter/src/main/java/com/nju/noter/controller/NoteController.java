@@ -52,5 +52,11 @@ public class NoteController {
         return noteService.deleteNote(userID, noteID);
     }
 
+    @RequestMapping(value = "/deleteNotebook", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseData deleteNotes(int userID, int notebookID){
+        return noteService.deleteNotebook(userID, notebookID);
+    }
+
 
 }

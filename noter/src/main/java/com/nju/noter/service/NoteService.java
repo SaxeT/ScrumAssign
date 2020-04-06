@@ -13,7 +13,7 @@ public interface NoteService {
      * 新建、保存笔记.
      * NoteVO中ID=-1新建；否则按照原有ID保存.
      */
-    ResponseData<String> addNote(NoteVO noteVO);
+    ResponseData<Note> addNote(NoteVO noteVO);
 
     ResponseData<Note> getNote(int noteID);
 
@@ -24,6 +24,14 @@ public interface NoteService {
     ResponseData<List<Note>> getNotesByNotebook(int userID, int notebookID);
 
     ResponseData<String> deleteNote(int userID, int noteID);
+
+    /**
+     * 删除笔记本里的所有笔记记录，不包括删除笔记本
+     * @param userID
+     * @param notebookID
+     * @return
+     */
+    ResponseData<String> deleteNotebook(int userID, int notebookID);
 
     // 迭代二 时间戳区间查询，模糊查询
     ResponseData<List<Note>> getNotesByTitle(int userID, String title);

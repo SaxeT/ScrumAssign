@@ -91,7 +91,7 @@
 - 参数
 
   ```
-  ID:2
+  id:2
   oldBookname:美食
   newBookname:美食记
   oldDescription:
@@ -121,7 +121,7 @@
 
 ```
 
-  ID:1
+  id:1
   oldBookname:旅行
   newBookname:美食记
   oldDescription:
@@ -148,7 +148,7 @@
 
 ```
 
-  ID:1
+  id:1
   oldBookname:旅行
   newBookname:美食记
   oldDescription:
@@ -180,7 +180,7 @@
 - 参数
 
 ```
-  ID:8
+  id:8
   bookname:吃喝玩乐
   userId:2
 ```

@@ -15,5 +15,8 @@ public interface NoteDao extends JpaRepository<Note, Integer> {
 
     List<Note> findByTitle(String title);
 
+    void deleteByUIDAndNBID(int UID, int NBID);
+
+
     //findByTimestamp
 }

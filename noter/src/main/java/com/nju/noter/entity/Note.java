@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 @Table(name = "note")
 public class Note {
     @Id
+    @GeneratedValue
     @Column(name = "id")
     private int ID;
 

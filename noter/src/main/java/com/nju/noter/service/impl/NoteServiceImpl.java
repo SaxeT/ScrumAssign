@@ -1,10 +1,15 @@
 package com.nju.noter.service.impl;
 
 import com.nju.noter.dao.NoteDao;
+import com.nju.noter.dao.NotebookDao;
 import com.nju.noter.entity.Note;
+import com.nju.noter.entity.Notebook;
 import com.nju.noter.service.NoteService;
+import com.nju.noter.service.NotebookService;
+import com.nju.noter.util.Common;
 import com.nju.noter.util.ResponseData;
 import com.nju.noter.util.Time;
+import com.nju.noter.vo.NoteBookVO;
 import com.nju.noter.vo.NoteVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,22 +24,45 @@ import java.util.Optional;
 public class NoteServiceImpl implements NoteService {
     @Autowired
     NoteDao noteDao;
+    @Autowired
+    NotebookService notebookService;
+    @Autowired
+    NotebookDao notebookDao;
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public ResponseData<String> addNote(NoteVO noteVO) {
-        ResponseData<String> responseData = new ResponseData<>();
+    public ResponseData<Note> addNote(NoteVO noteVO) {
+        ResponseData<Note> responseData = new ResponseData<>();
         Note note;
-        if (noteVO.getID() == -1) {
+        if (noteVO.getId() == -1) {
+            int nbid = noteVO.getnbid();
+            if ( -1 == nbid) {
+                Notebook notebook = notebookDao.findByUIDAndAndBookname(noteVO.getuid(), Common.NOTEBOOK_DEFAULT_NAME);
+                if (notebook == null) {
+                    ResponseData<Notebook> responseData1 =
+                            notebookService.addNewNoteBook(new NoteBookVO(Common.NOTEBOOK_DEFAULT_NAME,
+                                    Common.NOTEBOOK_DEFAULT_DESCRIPTION, noteVO.getuid()));
+                    if (responseData1.getResult()) {
+                        notebook = responseData1.getData();
+                        nbid = notebook.getID();
+                    } else {
+                        logger.error(Time.getCurrentTime()+" Failed to create default notebook: "+ noteVO.toString());
+                        responseData.setResult(false);
+                        responseData.setMessage("添加失败!");
+                        return responseData;
+                    }
+                } else {
+                    nbid = notebook.getID();
+                }
+            }
             note = new Note(noteVO.getTitle(),
                     noteVO.getContent(),
                     noteVO.getCategory(),
                     noteVO.getuid(),
-                    noteVO.getnbid()
-            );
+                    nbid);
         } else {
-            note = new Note(noteVO.getID(),
+            note = new Note(noteVO.getId(),
                     noteVO.getTitle(),
                     noteVO.getContent(),
                     noteVO.getCategory(),
@@ -44,8 +72,9 @@ public class NoteServiceImpl implements NoteService {
         }
 
         try{
-            noteDao.save(note);
+            Note notePO = noteDao.save(note);
             responseData.setResult(true);
+            responseData.setData(notePO);
         } catch (Exception e) {
             logger.error(Time.getCurrentTime()+" Failed to create Note: "+ noteVO.toString()+
                     " "+ e.getMessage());
@@ -156,6 +185,15 @@ public class NoteServiceImpl implements NoteService {
             responseData.setMessage("删除失败!");
         }
 
+        return responseData;
+    }
+
+    @Override
+    public ResponseData<String> deleteNotebook(int userID, int notebookID) {
+        noteDao.deleteByUIDAndNBID(userID, notebookID);
+        ResponseData<String> responseData = new ResponseData<>();
+        responseData.setResult(true);
+        responseData.setMessage("删除成功");
         return responseData;
     }
 

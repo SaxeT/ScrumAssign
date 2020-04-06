@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>笔记本管理</title>
     <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
@@ -130,7 +131,7 @@
                             <h1 id="bookNameHead" class="text-white pb-2 fw-bold"></h1>
                         </div>
                         <div class="ml-md-auto py-2 py-md-0">
-                            <a href="/newnote.html" class="btn btn-white btn-border btn-round mr-2 fa fa-code btn-lg">
+                            <a class="btn btn-white btn-border btn-round mr-2 fa fa-code btn-lg" onclick="newNote()">
                                 &nbsp;&nbsp;新增笔记
                             </a>
                         </div>
@@ -241,7 +242,7 @@
             minimumCountColumns: 2,             //最少允许的列数
             clickToSelect: true,                //是否启用点击选中行
             height: 500,                        //行高，如果没有设置height属性，表格自动根据记录条数觉得表格高度
-            uniqueId: "ID",                     //每一行的唯一标识，一般为主键列
+            uniqueId: "id",                     //每一行的唯一标识，一般为主键列
             showToggle:false,                   //是否显示详细视图和列表视图的切换按钮
             cardView: false,                    //是否显示详细视图
             detailView: false,                   //是否显示父子表
@@ -295,15 +296,15 @@
     //操作栏的格式化
     function actionFormatter(value, row, index) {
         var title = row.title;
-        var btnView = "<button type=\"button\" class=\"btn btn-outline-secondary\">";
-        var btnEdit = "<button type=\"button\" class=\"btn btn-outline-info\">";
+        // var btnView = "<button type=\"button\" class=\"btn btn-outline-secondary\">";
+        var btnEdit = "<button type=\"button\" class=\"btn btn-outline-info\"  onclick=\"editNote('" + row.id +"','" + title + "')\" >";
         var btnDel = "<button type=\"button\" class=\"btn btn-outline-danger\" onclick=\"delNote('" + row.id +"','" + title + "')\" >";
         var btnEnd = "</button>";
 
         console.log("Btn : " + row.id + " " + row.title);
         var result = "";
-        result += btnView + "查看" + btnEnd;
-        result += "&nbsp;&nbsp;";
+        // result += btnView + "查看" + btnEnd;
+        // result += "&nbsp;&nbsp;";
         result += btnEdit + "编辑" + btnEnd;
         result += "&nbsp;&nbsp;";
         result += btnDel + "删除" + btnEnd;
@@ -318,7 +319,17 @@
         return result;
     };
 
-    function  delNote(noteID, title) {
+    function newNote() {
+        var notebookID = getCookie("notebookid");
+        window.location.href = "newnote.html?notebookID="+notebookID;
+    }
+
+    function editNote(noteID) {
+        var notebookID = getCookie("notebookid");
+        window.location.href = "newnote.html?noteID="+noteID+"&notebookID="+notebookID;
+    }
+
+    function delNote(noteID, title) {
         var userID = getCookie('id');
         var noteID = noteID;
         var title = title;
