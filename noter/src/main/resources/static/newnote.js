@@ -1,6 +1,6 @@
 function save(){
-    let title = document.getElementById('note_title').value.toString();
-    let content = document.getElementById('editor').value.toString();
+    var title = document.getElementById('note_title').value.toString();
+    var content = document.getElementById('editor').value.toString();
 
     if(content===''){
         swal("失败!", response.message, {
@@ -74,7 +74,7 @@ function save(){
                     console.log(response);
                     noteID = response.data.id;
                     notebookID = response.data.nbid;
-                    window.location.href = "newNote.html?notebookID="+notebookID+"&noteID="+noteID;
+                    window.location.href = "newNote.html?noteID="+noteID+"&notebookID="+notebookID;
                 });
             }else{
                 swal("失败!", response.message, {
@@ -83,7 +83,7 @@ function save(){
                         confirm: {
                             className : 'btn btn-danger'
                         }
-                    },
+                    }
                 });
             }
         }
