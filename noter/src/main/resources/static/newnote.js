@@ -74,7 +74,7 @@ function save(){
                     console.log(response);
                     noteID = response.data.id;
                     notebookID = response.data.nbid;
-                    window.location.href = "newNote.html?noteID="+noteID+"&notebookID="+notebookID;
+                    window.location.href = "newnote.html?noteID="+noteID+"&notebookID="+notebookID;
                 });
             }else{
                 swal("失败!", response.message, {
