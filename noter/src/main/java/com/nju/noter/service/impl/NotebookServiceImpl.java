@@ -44,7 +44,7 @@ public class NotebookServiceImpl implements NotebookService {
             catch (Exception e) {
                 responseData.setMessage("无法找到笔记本");
                 responseData.setResult(false);
-                logger.error(Time.getCurrentTime()+"  " + vo.getUserId() + "无法找到笔记本");
+                logger.error(Time.getCurrentTime()+"  " + vo.getUserId() + "无法找到笔记本" + e.getMessage());
             }
         }
 
@@ -73,10 +73,9 @@ public class NotebookServiceImpl implements NotebookService {
                     logger.warn(Time.getCurrentTime()+"  "+ vo.getBookname()  + "  新增笔记本成功！");
                 }
             } catch (Exception e) {
-                e.printStackTrace();
                 responseData.setResult(false);
                 responseData.setMessage("新增笔记本失败!");
-                logger.error(Time.getCurrentTime()+"  " + vo.getBookname() + "新增笔记本失败!");
+                logger.error(Time.getCurrentTime()+"  " + vo.getBookname() + "新增笔记本失败!"+e.getMessage());
             }
         }
         return responseData;
@@ -107,10 +106,9 @@ public class NotebookServiceImpl implements NotebookService {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
                 responseData.setResult(false);
                 responseData.setMessage("修改笔记本失败");
-                logger.error(Time.getCurrentTime() + "  " + vo.getID() + "修改笔记本失败");
+                logger.error(Time.getCurrentTime() + "  " + vo.getID() + "修改笔记本失败" + e.getMessage());
             }
         }
         return responseData;
@@ -137,10 +135,9 @@ public class NotebookServiceImpl implements NotebookService {
                 }
 
             } catch (Exception e) {
-                e.printStackTrace();
                 responseData.setResult(false);
                 responseData.setMessage("删除笔记本失败");
-                logger.error(Time.getCurrentTime() + "  " + vo.getID() + " 删除笔记本失败");
+                logger.error(Time.getCurrentTime() + "  " + vo.getID() + " 删除笔记本失败" + e.getMessage());
             }
         }
         return responseData;
