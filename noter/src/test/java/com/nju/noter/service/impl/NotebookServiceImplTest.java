@@ -26,7 +26,6 @@ class NotebookServiceImplTest {
     @Test
     @Transactional
     void findAllNoteBook() {
-        // assertTrue(userService.addUser(new newUserVO("testAddUser@t.t", "t", "t")).getResult());
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
         ListNoteBooksVO listvo = new ListNoteBooksVO(1);
@@ -53,12 +52,12 @@ class NotebookServiceImplTest {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
         Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
-        int ID = notebook.getId();
-        ModfiyNoteBookVO mod = new ModfiyNoteBookVO(ID,"bookname","bookname",
+        int notebookId = notebook.getId();
+        ModfiyNoteBookVO mod = new ModfiyNoteBookVO(notebookId,"bookname","bookname",
                 "description", "description",1);
         assertTrue(notebookService.modifyNoteBook(mod).getResult());
 
-        ModfiyNoteBookVO mod2 = new ModfiyNoteBookVO(ID,"bookname","bookname",
+        ModfiyNoteBookVO mod2 = new ModfiyNoteBookVO(notebookId,"bookname","bookname",
                 "description", "description",-1);
         assertFalse(notebookService.modifyNoteBook(mod2).getResult());
 
@@ -70,11 +69,11 @@ class NotebookServiceImplTest {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
         Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
-        int ID = notebook.getId();
-        DeleteNoteBookVO del = new DeleteNoteBookVO(ID,"bookname",1);
+        int notebookId = notebook.getId();
+        DeleteNoteBookVO del = new DeleteNoteBookVO(notebookId,"bookname",1);
         assertTrue(notebookService.deleteNoteBook(del).getResult());
 
-        DeleteNoteBookVO del2 = new DeleteNoteBookVO(ID,"bookname",-1);
+        DeleteNoteBookVO del2 = new DeleteNoteBookVO(notebookId,"bookname",-1);
         assertFalse(notebookService.deleteNoteBook(del2).getResult());
     }
 }

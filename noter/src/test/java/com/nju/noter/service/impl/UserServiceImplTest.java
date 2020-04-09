@@ -32,8 +32,8 @@ class UserServiceImplTest {
 
     @Test
     void modifyUser() {
-        String UserID = userService.addUser(new NewUserVO("testModifyUser@t.t", "t", "t")).getData();
-        int id = Integer.parseInt(UserID);
+        String userID = userService.addUser(new NewUserVO("testModifyUser@t.t", "t", "t")).getData();
+        int id = Integer.parseInt(userID);
         assertFalse(userService.modifyUser(new NewPasswordVO(id, "tt", "ttt")).getResult());
         assertTrue(userService.modifyUser(new NewPasswordVO(id, "t", "ttt")).getResult());
     }

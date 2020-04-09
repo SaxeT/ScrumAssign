@@ -54,8 +54,8 @@ public class Note {
         return id;
     }
 
-    public void setId(int ID) {
-        this.id = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -94,16 +94,16 @@ public class Note {
         return uid;
     }
 
-    public void setUid(int UID) {
-        this.uid = UID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public int getNbid() {
         return nbid;
     }
 
-    public void setNbid(int NBID) {
-        this.nbid = NBID;
+    public void setNbid(int nbid) {
+        this.nbid = nbid;
     }
 
     @Override

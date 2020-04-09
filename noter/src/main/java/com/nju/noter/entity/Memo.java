@@ -41,8 +41,8 @@ public class Memo {
         return id;
     }
 
-    public void setId(int ID) {
-        this.id = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -73,7 +73,7 @@ public class Memo {
         return uid;
     }
 
-    public void setUid(int UID) {
-        this.uid = UID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 }

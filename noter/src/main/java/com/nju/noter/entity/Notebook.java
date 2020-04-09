@@ -44,16 +44,16 @@ public class Notebook implements Comparable<Notebook> {
         return id;
     }
 
-    public void setId(int ID) {
-        this.id = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getUid() {
         return uid;
     }
 
-    public void setUid(int UID) {
-        this.uid = UID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public Notebook(String bookname, String description, int uid) {
