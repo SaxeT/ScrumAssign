@@ -9,9 +9,9 @@ import java.util.List;
 @Transactional
 public interface NotebookDao extends JpaRepository<Notebook, Integer> {
 
-    Notebook findByID(int id);
-    Notebook findByUIDAndAndBookname(int uid, String name);
+    Notebook findById(int id);
+    Notebook findByUidAndAndBookname(int uid, String name);
     List<Notebook> findAll();
-    List<Notebook> findByUID(int uid);
-    void deleteByID(int id);
+    List<Notebook> findByUid(int uid);
+    void deleteById(int id);
 }

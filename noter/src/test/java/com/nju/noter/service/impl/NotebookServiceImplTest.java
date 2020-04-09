@@ -51,7 +51,7 @@ class NotebookServiceImplTest {
     void modifyNoteBook() {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
-        Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
+        Notebook notebook = notebookDao.findByUidAndAndBookname(1, "bookname");
         int notebookId = notebook.getId();
         ModfiyNoteBookVO mod = new ModfiyNoteBookVO(notebookId,"bookname","bookname",
                 "description", "description",1);
@@ -68,7 +68,7 @@ class NotebookServiceImplTest {
     void deleteNoteBook() {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
-        Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
+        Notebook notebook = notebookDao.findByUidAndAndBookname(1, "bookname");
         int notebookId = notebook.getId();
         DeleteNoteBookVO del = new DeleteNoteBookVO(notebookId,"bookname",1);
         assertTrue(notebookService.deleteNoteBook(del).getResult());

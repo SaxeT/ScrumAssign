@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
     public ResponseData<String> modifyUser(NewPasswordVO vo) {
         ResponseData<String> responseData = new ResponseData<>();
         try{
-            User user = userDao.findByID(vo.getId());
+            User user = userDao.findById(vo.getId());
             String password = user.getPassword();
             if (vo.getOldPassword().equals(password)){
                 user.setPassword(vo.getNewPassword());

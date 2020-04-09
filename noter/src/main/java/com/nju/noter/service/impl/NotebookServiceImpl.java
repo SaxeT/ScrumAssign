@@ -33,7 +33,7 @@ public class NotebookServiceImpl implements NotebookService {
             responseData.setResult(false);
         } else {
             try{
-                List<Notebook> notebooks = notebookDao.findByUID(vo.getUserId());
+                List<Notebook> notebooks = notebookDao.findByUid(vo.getUserId());
                 ArrayList<Notebook> arrayList = new ArrayList<>(notebooks);
                 Collections.sort(arrayList);
                 responseData.setData(arrayList);
@@ -59,14 +59,14 @@ public class NotebookServiceImpl implements NotebookService {
             responseData.setResult(false);
         } else {
           try{
-                if (notebookDao.findByUIDAndAndBookname(vo.getUserId(), vo.getBookname())!=null){
+                if (notebookDao.findByUidAndAndBookname(vo.getUserId(), vo.getBookname())!=null){
                     responseData.setResult(false);
                     responseData.setMessage("笔记本已经存在!");
                     logger.error(Time.getCurrentTime()+"  " + vo.getBookname() + "笔记本已经存在!");
                 }else{
                     Notebook notebook = new Notebook(vo.getBookname(), vo.getDescription(), vo.getUserId());
                     notebookDao.save(notebook);
-                    Notebook data = notebookDao.findByUIDAndAndBookname(vo.getUserId(), vo.getBookname());
+                    Notebook data = notebookDao.findByUidAndAndBookname(vo.getUserId(), vo.getBookname());
                     responseData.setData(data);
                     responseData.setResult(true);
                     responseData.setMessage("新增笔记本成功！");
@@ -90,12 +90,12 @@ public class NotebookServiceImpl implements NotebookService {
         }
         else {
             try {
-                if (notebookDao.findByID(vo.getId()) == null) {
+                if (notebookDao.findById(vo.getId()) == null) {
                     responseData.setResult(false);
                     responseData.setMessage("笔记本不存在!");
                     logger.error(Time.getCurrentTime() + "  " + vo.getId() + "笔记本不存在!");
                 } else {
-                    Notebook notebook = notebookDao.findByID(vo.getId());
+                    Notebook notebook = notebookDao.findById(vo.getId());
                     notebook.setBookname(vo.getNewBookname());
                     notebook.setDescription(vo.getNewDescription());
                     notebookDao.save(notebook);
@@ -123,12 +123,12 @@ public class NotebookServiceImpl implements NotebookService {
         }
         else {
             try {
-                if (notebookDao.findByID(vo.getId()) == null) {
+                if (notebookDao.findById(vo.getId()) == null) {
                     responseData.setResult(false);
                     responseData.setMessage("笔记本不存在!");
                     logger.error(Time.getCurrentTime() + "  " + vo.getId() + " 笔记本不存在!");
                 } else {
-                    notebookDao.deleteByID(vo.getId());
+                    notebookDao.deleteById(vo.getId());
                     responseData.setResult(true);
                     responseData.setMessage("删除本修改成功!");
                     logger.warn(Time.getCurrentTime() + "  " + vo.getId() + "  删除本修改成功!");

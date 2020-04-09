@@ -38,7 +38,7 @@ public class NoteServiceImpl implements NoteService {
         if (noteVO.getId() == -1) {
             int nbid = noteVO.getnbid();
             if ( -1 == nbid) {
-                Notebook notebook = notebookDao.findByUIDAndAndBookname(noteVO.getuid(), Common.NOTEBOOK_DEFAULT_NAME);
+                Notebook notebook = notebookDao.findByUidAndAndBookname(noteVO.getuid(), Common.NOTEBOOK_DEFAULT_NAME);
                 if (notebook == null) {
                     ResponseData<Notebook> responseData1 =
                             notebookService.addNewNoteBook(new NoteBookVO(Common.NOTEBOOK_DEFAULT_NAME,
@@ -111,7 +111,7 @@ public class NoteServiceImpl implements NoteService {
     public ResponseData<List<Note>> getAllNotes(int userID) {
         ResponseData<List<Note>> responseData = new ResponseData<>();
         try{
-            List<Note> list = noteDao.findByUID(userID);
+            List<Note> list = noteDao.findByUid(userID);
             responseData.setResult(true);
             responseData.setMessage("笔记数量:"+list.size());
             responseData.setData(list);
@@ -128,7 +128,7 @@ public class NoteServiceImpl implements NoteService {
     public ResponseData<List<Note>> getNotesByCategory(int userID, String category) {
         ResponseData<List<Note>> responseData = new ResponseData<>();
         try{
-            List<Note> list = noteDao.findByUIDAndCategory(userID, category);
+            List<Note> list = noteDao.findByUidAndCategory(userID, category);
             responseData.setResult(true);
             responseData.setMessage("数量:"+list.size());
             responseData.setData(list);
@@ -145,7 +145,7 @@ public class NoteServiceImpl implements NoteService {
     public ResponseData<List<Note>> getNotesByNotebook(int userID, int notebookID) {
         ResponseData<List<Note>> responseData = new ResponseData<>();
         try{
-            List<Note> list = noteDao.findByUIDAndNBID(userID, notebookID);
+            List<Note> list = noteDao.findByUidAndNbid(userID, notebookID);
             responseData.setResult(true);
             responseData.setMessage("数量:"+list.size());
             responseData.setData(list);
@@ -190,7 +190,7 @@ public class NoteServiceImpl implements NoteService {
 
     @Override
     public ResponseData<String> deleteNotebook(int userID, int notebookID) {
-        noteDao.deleteByUIDAndNBID(userID, notebookID);
+        noteDao.deleteByUidAndNbid(userID, notebookID);
         ResponseData<String> responseData = new ResponseData<>();
         responseData.setResult(true);
         responseData.setMessage("删除成功");
