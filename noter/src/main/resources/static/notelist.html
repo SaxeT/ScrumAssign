@@ -314,7 +314,7 @@
     //  时间栏的格式化
     function timeFormatter(value, row, index) {
         var result = "";
-        result = value.substring(0,19);
+        result = value.substring(0,10) + " " + value.substring(11,19);
         return result;
     };
 
