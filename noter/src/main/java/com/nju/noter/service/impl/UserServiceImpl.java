@@ -38,7 +38,6 @@ public class UserServiceImpl implements UserService {
                 logger.info(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
             logger.error(Time.getCurrentTime()+"  Something wrong!");
@@ -71,7 +70,6 @@ public class UserServiceImpl implements UserService {
                 }
             }
         }catch (Exception e){
-            e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
             logger.error(Time.getCurrentTime()+"  Something wrong!");
@@ -98,7 +96,6 @@ public class UserServiceImpl implements UserService {
                 logger.error(Time.getCurrentTime()+"  "+ vo.getID() + " Old Password Wrong!");
             }
         }catch (Exception e){
-            e.printStackTrace();
             responseData.setResult(false);
             responseData.setMessage("Something wrong!");
             logger.error(Time.getCurrentTime()+"  Something wrong!");
