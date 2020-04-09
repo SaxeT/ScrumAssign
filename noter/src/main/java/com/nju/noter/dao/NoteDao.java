@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface NoteDao extends JpaRepository<Note, Integer> {
 
-    List<Note> findByUID(int UID);
+    List<Note> findByUID(int uid);
 
-    List<Note> findByUIDAndCategory(int UID, String category);
+    List<Note> findByUIDAndCategory(int uid, String category);
 
-    List<Note> findByUIDAndNBID(int UID, int NBID);
+    List<Note> findByUIDAndNBID(int uid, int nbid);
 
     List<Note> findByTitle(String title);
 
-    void deleteByUIDAndNBID(int UID, int NBID);
+    void deleteByUIDAndNBID(int uid, int nbid);
 
 
     //findByTimestamp

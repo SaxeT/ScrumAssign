@@ -5,9 +5,9 @@ import com.nju.noter.entity.User;
 import com.nju.noter.service.UserService;
 import com.nju.noter.util.ResponseData;
 import com.nju.noter.util.Time;
-import com.nju.noter.vo.loginVO;
-import com.nju.noter.vo.newPasswordVO;
-import com.nju.noter.vo.newUserVO;
+import com.nju.noter.vo.LoginVO;
+import com.nju.noter.vo.NewPasswordVO;
+import com.nju.noter.vo.NewUserVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public ResponseData<String> addUser(newUserVO vo) {
+    public ResponseData<String> addUser(NewUserVO vo) {
         ResponseData<String> responseData = new ResponseData<>();
         try{
             if (userDao.findByMail(vo.getMail())!=null){
@@ -31,10 +31,10 @@ public class UserServiceImpl implements UserService {
             }else{
                 User user = new User(vo.getMail(), vo.getUserName(), vo.getPassword());
                 userDao.save(user);
-                int UserID = userDao.findByMail(vo.getMail()).getID();
+                int userID = userDao.findByMail(vo.getMail()).getId();
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
-                responseData.setData(String.valueOf(UserID));
+                responseData.setData(String.valueOf(userID));
                 logger.info(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
             }
         } catch (Exception e) {
@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseData<Integer> checkUser(loginVO vo) {
+    public ResponseData<Integer> checkUser(LoginVO vo) {
         ResponseData<Integer> responseData = new ResponseData<>();
         try{
             User user = userDao.findByMail(vo.getMail());
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
                 if (vo.getPassword().equals(password)){
                     responseData.setResult(true);
                     responseData.setMessage("Success!");
-                    responseData.setData(user.getID());
+                    responseData.setData(user.getId());
                     logger.info(Time.getCurrentTime()+"  "+ vo.getMail() + "  Success!");
                 }
                 else{
@@ -78,22 +78,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseData<String> modifyUser(newPasswordVO vo) {
+    public ResponseData<String> modifyUser(NewPasswordVO vo) {
         ResponseData<String> responseData = new ResponseData<>();
         try{
-            User user = userDao.findByID(vo.getID());
+            User user = userDao.findByID(vo.getId());
             String password = user.getPassword();
             if (vo.getOldPassword().equals(password)){
                 user.setPassword(vo.getNewPassword());
                 userDao.save(user);
                 responseData.setResult(true);
                 responseData.setMessage("Success!");
-                logger.info(Time.getCurrentTime()+"  "+ vo.getID() + "  Success!");
+                logger.info(Time.getCurrentTime()+"  "+ vo.getId() + "  Success!");
             }
             else{
                 responseData.setResult(false);
                 responseData.setMessage("Old Password Wrong!");
-                logger.error(Time.getCurrentTime()+"  "+ vo.getID() + " Old Password Wrong!");
+                logger.error(Time.getCurrentTime()+"  "+ vo.getId() + " Old Password Wrong!");
             }
         }catch (Exception e){
             responseData.setResult(false);

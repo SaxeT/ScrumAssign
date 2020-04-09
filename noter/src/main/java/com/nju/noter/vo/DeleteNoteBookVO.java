@@ -1,22 +1,22 @@
 package com.nju.noter.vo;
 
-public class deleteNoteBookVO {
-    int ID;
+public class DeleteNoteBookVO {
+    int id;
     String bookname;
     int userId;
 
-    public deleteNoteBookVO(int ID, String bookname, int userId) {
-        this.ID = ID;
+    public DeleteNoteBookVO(int id, String bookname, int userId) {
+        this.id = id;
         this.bookname = bookname;
         this.userId = userId;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getBookname() {

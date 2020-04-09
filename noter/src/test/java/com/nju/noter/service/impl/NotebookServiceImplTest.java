@@ -4,9 +4,9 @@ import com.nju.noter.dao.NotebookDao;
 import com.nju.noter.entity.Notebook;
 import com.nju.noter.service.NotebookService;
 import com.nju.noter.vo.NoteBookVO;
-import com.nju.noter.vo.deleteNoteBookVO;
-import com.nju.noter.vo.listNoteBooksVO;
-import com.nju.noter.vo.modfiyNoteBookVO;
+import com.nju.noter.vo.DeleteNoteBookVO;
+import com.nju.noter.vo.ListNoteBooksVO;
+import com.nju.noter.vo.ModfiyNoteBookVO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,10 +29,10 @@ class NotebookServiceImplTest {
         // assertTrue(userService.addUser(new newUserVO("testAddUser@t.t", "t", "t")).getResult());
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
-        listNoteBooksVO listvo = new listNoteBooksVO(1);
+        ListNoteBooksVO listvo = new ListNoteBooksVO(1);
         assertTrue(notebookService.findAllNoteBook(listvo).getResult());
 
-        listNoteBooksVO listvo2 = new listNoteBooksVO(-1);
+        ListNoteBooksVO listvo2 = new ListNoteBooksVO(-1);
         assertFalse(notebookService.findAllNoteBook(listvo2).getResult());
 
     }
@@ -53,12 +53,12 @@ class NotebookServiceImplTest {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
         Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
-        int ID = notebook.getID();
-        modfiyNoteBookVO mod = new modfiyNoteBookVO(ID,"bookname","bookname",
+        int ID = notebook.getId();
+        ModfiyNoteBookVO mod = new ModfiyNoteBookVO(ID,"bookname","bookname",
                 "description", "description",1);
         assertTrue(notebookService.modifyNoteBook(mod).getResult());
 
-        modfiyNoteBookVO mod2 = new modfiyNoteBookVO(ID,"bookname","bookname",
+        ModfiyNoteBookVO mod2 = new ModfiyNoteBookVO(ID,"bookname","bookname",
                 "description", "description",-1);
         assertFalse(notebookService.modifyNoteBook(mod2).getResult());
 
@@ -70,11 +70,11 @@ class NotebookServiceImplTest {
         NoteBookVO vo = new NoteBookVO("bookname","description",1);
         notebookService.addNewNoteBook(vo);
         Notebook notebook = notebookDao.findByUIDAndAndBookname(1, "bookname");
-        int ID = notebook.getID();
-        deleteNoteBookVO del = new deleteNoteBookVO(ID,"bookname",1);
+        int ID = notebook.getId();
+        DeleteNoteBookVO del = new DeleteNoteBookVO(ID,"bookname",1);
         assertTrue(notebookService.deleteNoteBook(del).getResult());
 
-        deleteNoteBookVO del2 = new deleteNoteBookVO(ID,"bookname",-1);
+        DeleteNoteBookVO del2 = new DeleteNoteBookVO(ID,"bookname",-1);
         assertFalse(notebookService.deleteNoteBook(del2).getResult());
     }
 }

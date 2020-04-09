@@ -12,20 +12,20 @@ public class NoteVO {
 
     }
 
-    public NoteVO(String title, String content, String category, Integer UID, Integer nbid) {
+    public NoteVO(String title, String content, String category, Integer uid, Integer nbid) {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.uid = UID;
+        this.uid = uid;
         this.nbid = nbid;
     }
 
-    public NoteVO(int id, String title, String content, String category, Integer UID, Integer nbid) {
+    public NoteVO(int id, String title, String content, String category, Integer uid, Integer nbid) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
-        this.uid = UID;
+        this.uid = uid;
         this.nbid = nbid;
     }
 
@@ -65,16 +65,16 @@ public class NoteVO {
         return uid;
     }
 
-    public void setuid(Integer UID) {
-        this.uid = UID;
+    public void setuid(Integer uid) {
+        this.uid = uid;
     }
 
     public Integer getnbid() {
         return nbid;
     }
 
-    public void setnbid(Integer NBID) {
-        this.nbid = NBID;
+    public void setnbid(Integer nbid) {
+        this.nbid = nbid;
     }
 
     @Override

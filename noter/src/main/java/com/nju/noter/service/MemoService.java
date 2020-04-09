@@ -1,12 +1,12 @@
 package com.nju.noter.service;
 
 import com.nju.noter.util.ResponseData;
-import com.nju.noter.vo.memoVO;
+import com.nju.noter.vo.MemoVO;
 
 public interface MemoService {
-    ResponseData<String> addMemo(memoVO vo);
+    ResponseData<String> addMemo(MemoVO vo);
 
-    ResponseData<String> modifyMemo(memoVO vo);
+    ResponseData<String> modifyMemo(MemoVO vo);
 
     ResponseData<String> checkMemo(int id);
 

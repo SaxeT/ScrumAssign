@@ -4,15 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Time {
-//    private static Time TIME;
-//
-//    private Time(){}
-//
-//    public static Time getInstance(){
-//        if(TIME==null)
-//            TIME = new Time();
-//        return TIME;
-//    }
+
+    private Time(){
+        throw new IllegalStateException("Utility class");
+    }
 
     public static String getCurrentTime(){
         Date now = new Date();

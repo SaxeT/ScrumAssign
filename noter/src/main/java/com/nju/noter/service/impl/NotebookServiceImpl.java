@@ -6,9 +6,9 @@ import com.nju.noter.service.NotebookService;
 import com.nju.noter.util.ResponseData;
 import com.nju.noter.util.Time;
 import com.nju.noter.vo.NoteBookVO;
-import com.nju.noter.vo.deleteNoteBookVO;
-import com.nju.noter.vo.listNoteBooksVO;
-import com.nju.noter.vo.modfiyNoteBookVO;
+import com.nju.noter.vo.DeleteNoteBookVO;
+import com.nju.noter.vo.ListNoteBooksVO;
+import com.nju.noter.vo.ModfiyNoteBookVO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +26,10 @@ public class NotebookServiceImpl implements NotebookService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public ResponseData<List<Notebook>> findAllNoteBook(listNoteBooksVO vo) {
+    public ResponseData<List<Notebook>> findAllNoteBook(ListNoteBooksVO vo) {
         ResponseData<List<Notebook>> responseData = new ResponseData<>();
         if(vo.getUserId() < 0) {
-            responseData.setMessage("无法找到笔记本");
+            responseData.setMessage("该用户没有笔记本");
             responseData.setResult(false);
         } else {
             try{
@@ -82,62 +82,62 @@ public class NotebookServiceImpl implements NotebookService {
     }
 
     @Override
-    public ResponseData<Notebook> modifyNoteBook(modfiyNoteBookVO vo) {
+    public ResponseData<Notebook> modifyNoteBook(ModfiyNoteBookVO vo) {
         ResponseData<Notebook> responseData = new ResponseData<>();
         if(vo.getUserId() < 0) {
-            responseData.setMessage("无法修改笔记本");
+            responseData.setMessage("该用户没有笔记本");
             responseData.setResult(false);
         }
         else {
             try {
-                if (notebookDao.findByID(vo.getID()) == null) {
+                if (notebookDao.findByID(vo.getId()) == null) {
                     responseData.setResult(false);
                     responseData.setMessage("笔记本不存在!");
-                    logger.error(Time.getCurrentTime() + "  " + vo.getID() + "笔记本不存在!");
+                    logger.error(Time.getCurrentTime() + "  " + vo.getId() + "笔记本不存在!");
                 } else {
-                    Notebook notebook = notebookDao.findByID(vo.getID());
+                    Notebook notebook = notebookDao.findByID(vo.getId());
                     notebook.setBookname(vo.getNewBookname());
                     notebook.setDescription(vo.getNewDescription());
                     notebookDao.save(notebook);
                     responseData.setData(notebook);
                     responseData.setResult(true);
                     responseData.setMessage("笔记本修改成功!");
-                    logger.warn(Time.getCurrentTime() + "  " + vo.getID() + "  新增笔记本成功！");
+                    logger.warn(Time.getCurrentTime() + "  " + vo.getId() + "  新增笔记本成功！");
                 }
 
             } catch (Exception e) {
                 responseData.setResult(false);
                 responseData.setMessage("修改笔记本失败");
-                logger.error(Time.getCurrentTime() + "  " + vo.getID() + "修改笔记本失败" + e.getMessage());
+                logger.error(Time.getCurrentTime() + "  " + vo.getId() + "修改笔记本失败" + e.getMessage());
             }
         }
         return responseData;
     }
 
     @Override
-    public ResponseData deleteNoteBook(deleteNoteBookVO vo) {
+    public ResponseData deleteNoteBook(DeleteNoteBookVO vo) {
         ResponseData<Notebook> responseData = new ResponseData<>();
-        if(vo.getID() < 0) {
+        if(vo.getId() < 0) {
             responseData.setMessage("无法删除笔记本");
             responseData.setResult(false);
         }
         else {
             try {
-                if (notebookDao.findByID(vo.getID()) == null) {
+                if (notebookDao.findByID(vo.getId()) == null) {
                     responseData.setResult(false);
                     responseData.setMessage("笔记本不存在!");
-                    logger.error(Time.getCurrentTime() + "  " + vo.getID() + " 笔记本不存在!");
+                    logger.error(Time.getCurrentTime() + "  " + vo.getId() + " 笔记本不存在!");
                 } else {
-                    notebookDao.deleteByID(vo.getID());
+                    notebookDao.deleteByID(vo.getId());
                     responseData.setResult(true);
                     responseData.setMessage("删除本修改成功!");
-                    logger.warn(Time.getCurrentTime() + "  " + vo.getID() + "  删除本修改成功!");
+                    logger.warn(Time.getCurrentTime() + "  " + vo.getId() + "  删除本修改成功!");
                 }
 
             } catch (Exception e) {
                 responseData.setResult(false);
                 responseData.setMessage("删除笔记本失败");
-                logger.error(Time.getCurrentTime() + "  " + vo.getID() + " 删除笔记本失败" + e.getMessage());
+                logger.error(Time.getCurrentTime() + "  " + vo.getId() + " 删除笔记本失败" + e.getMessage());
             }
         }
         return responseData;

@@ -1,16 +1,16 @@
 package com.nju.noter.service;
 
 import com.nju.noter.util.ResponseData;
-import com.nju.noter.vo.loginVO;
-import com.nju.noter.vo.newPasswordVO;
-import com.nju.noter.vo.newUserVO;
+import com.nju.noter.vo.LoginVO;
+import com.nju.noter.vo.NewPasswordVO;
+import com.nju.noter.vo.NewUserVO;
 
 
 public interface UserService {
-    ResponseData<String> addUser(newUserVO vo);
+    ResponseData<String> addUser(NewUserVO vo);
 
-    ResponseData<Integer> checkUser(loginVO vo);
+    ResponseData<Integer> checkUser(LoginVO vo);
 
-    ResponseData<String> modifyUser(newPasswordVO vo);
+    ResponseData<String> modifyUser(NewPasswordVO vo);
 
 }

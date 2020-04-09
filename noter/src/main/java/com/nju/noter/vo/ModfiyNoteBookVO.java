@@ -1,15 +1,15 @@
 package com.nju.noter.vo;
 
-public class modfiyNoteBookVO {
-    int ID;
+public class ModfiyNoteBookVO {
+    int id;
     String oldBookname;
     String newBookname;
     String oldDescription;
     String newDescription;
     int userId;
 
-    public modfiyNoteBookVO(int ID, String oldBookname, String newBookname, String oldDescription, String newDescription, int userId) {
-        this.ID = ID;
+    public ModfiyNoteBookVO(int id, String oldBookname, String newBookname, String oldDescription, String newDescription, int userId) {
+        this.id = id;
         this.oldBookname = oldBookname.trim();
         this.newBookname = newBookname.trim();
         this.oldDescription = oldDescription.trim();
@@ -17,12 +17,12 @@ public class modfiyNoteBookVO {
         this.userId = userId;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getOldBookname() {

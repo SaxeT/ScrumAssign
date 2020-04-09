@@ -1,9 +1,9 @@
 package com.nju.noter.vo;
 
-public class listNoteBooksVO {
+public class ListNoteBooksVO {
     int userId;
 
-    public listNoteBooksVO(int userId) {
+    public ListNoteBooksVO(int userId) {
         this.userId = userId;
     }
 

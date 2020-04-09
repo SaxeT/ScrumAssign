@@ -1,11 +1,11 @@
 package com.nju.noter.vo;
 
-public class newUserVO {
+public class NewUserVO {
     String mail;
     String userName;
     String password;
 
-    public newUserVO(String mail, String userName, String password) {
+    public NewUserVO(String mail, String userName, String password) {
         this.mail = mail;
         this.userName = userName;
         this.password = password;

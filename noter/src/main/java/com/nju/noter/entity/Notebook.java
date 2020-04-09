@@ -10,7 +10,7 @@ public class Notebook implements Comparable<Notebook> {
 
     @Id
     @Column(name = "id")
-    private int ID;
+    private int id;
 
     @Column(name ="name")
     private String bookname;
@@ -19,7 +19,7 @@ public class Notebook implements Comparable<Notebook> {
     private String description;
 
     @Column(name = "uid")
-    private int UID;
+    private int uid;
 
     public Notebook() {
     }
@@ -40,32 +40,32 @@ public class Notebook implements Comparable<Notebook> {
         this.description = description;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = ID;
     }
 
-    public int getUID() {
-        return UID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setUid(int UID) {
+        this.uid = UID;
     }
 
-    public Notebook(String bookname, String description, int UID) {
+    public Notebook(String bookname, String description, int uid) {
         this.bookname = bookname;
         this.description = description;
-        this.UID = UID;
+        this.uid = uid;
     }
 
     @Override
     public int compareTo(Notebook o) {
-        if(this.getID() < o.getID()) return 1;
-        else if(this.getID() > o.getID()) return -1;
+        if(this.getId() < o.getId()) return 1;
+        else if(this.getId() > o.getId()) return -1;
         return 0;
     }
 }

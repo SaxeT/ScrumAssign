@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class User {
     @Id
     @Column(name = "id")
-    private int ID;
+    private int id;
 
     @Column(name = "mail")
     private String mail;
@@ -26,12 +26,12 @@ public class User {
         this.password = password;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = ID;
     }
 
     public String getMail() {

@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 public class Memo {
     @Id
     @Column(name = "id")
-    private int ID;
+    private int id;
 
     @Column(name = "title")
     private String title;
@@ -24,25 +24,25 @@ public class Memo {
     private String content;
 
     @Column(name = "uid")
-    private int UID;
+    private int uid;
 
     public Memo() {
     }
 
-    public Memo(int ID, String title, Timestamp time, String content, int UID) {
-        this.ID = ID;
+    public Memo(int id, String title, Timestamp time, String content, int uid) {
+        this.id = id;
         this.title = title;
         this.time = time;
         this.content = content;
-        this.UID = UID;
+        this.uid = uid;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = ID;
     }
 
     public String getTitle() {
@@ -69,11 +69,11 @@ public class Memo {
         this.content = content;
     }
 
-    public int getUID() {
-        return UID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setUid(int UID) {
+        this.uid = UID;
     }
 }

@@ -4,21 +4,21 @@ import com.nju.noter.entity.Memo;
 
 import java.util.List;
 
-public class memoListVO {
-    private int UID;
+public class MemoListVO {
+    private int uid;
     private List<Memo> memoList;
 
-    public memoListVO(int UID, List<Memo> memoList) {
-        this.UID = UID;
+    public MemoListVO(int uid, List<Memo> memoList) {
+        this.uid = uid;
         this.memoList = memoList;
     }
 
-    public int getUID() {
-        return UID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setUid(int uid) {
+        this.uid = uid;
     }
 
     public List<Memo> getMemoList() {

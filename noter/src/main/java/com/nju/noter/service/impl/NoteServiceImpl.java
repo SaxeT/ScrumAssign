@@ -45,7 +45,7 @@ public class NoteServiceImpl implements NoteService {
                                     Common.NOTEBOOK_DEFAULT_DESCRIPTION, noteVO.getuid()));
                     if (responseData1.getResult()) {
                         notebook = responseData1.getData();
-                        nbid = notebook.getID();
+                        nbid = notebook.getId();
                     } else {
                         logger.error(Time.getCurrentTime()+" Failed to create default notebook: "+ noteVO.toString());
                         responseData.setResult(false);
@@ -53,7 +53,7 @@ public class NoteServiceImpl implements NoteService {
                         return responseData;
                     }
                 } else {
-                    nbid = notebook.getID();
+                    nbid = notebook.getId();
                 }
             }
             note = new Note(noteVO.getTitle(),
@@ -119,7 +119,7 @@ public class NoteServiceImpl implements NoteService {
             logger.error(Time.getCurrentTime()+" Failed to get all notes for userID:"+ userID +
                     " "+ e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("获取失败!");
+            responseData.setMessage("获取全部笔记失败!");
         }
         return responseData;
     }
@@ -136,7 +136,7 @@ public class NoteServiceImpl implements NoteService {
             logger.error(Time.getCurrentTime()+" Failed to get all notes by category for userID:"+ userID +
                     ", category:" + category + " " + e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("获取失败!");
+            responseData.setMessage("获取笔记列表失败!");
         }
         return responseData;
     }
@@ -153,7 +153,7 @@ public class NoteServiceImpl implements NoteService {
             logger.error(Time.getCurrentTime()+" Failed to get all notes in a notebook for userID:"+ userID +
                     ", notebookID:" + notebookID + " " + e.getMessage());
             responseData.setResult(false);
-            responseData.setMessage("获取失败!");
+            responseData.setMessage("获取笔记本中笔记失败!");
         }
         return responseData;
     }
@@ -166,7 +166,7 @@ public class NoteServiceImpl implements NoteService {
             Note note;
             if (optional.isPresent()) {
                 note = (Note) optional.get();
-                if (note.getUID() != userID) {
+                if (note.getUid() != userID) {
                     responseData.setResult(false);
                     responseData.setMessage("删除失败!该笔记不属于用户:"+userID);
                 } else{

@@ -1,8 +1,11 @@
 package com.nju.noter.util;
 
 public class Common {
+    private Common(){
+        throw new IllegalStateException("Utility class");
+    }
 
-    public final static String NOTEBOOK_DEFAULT_NAME = "default";
+    public static final String NOTEBOOK_DEFAULT_NAME = "default";
 
-    public final static String NOTEBOOK_DEFAULT_DESCRIPTION = "";
+    public static final String NOTEBOOK_DEFAULT_DESCRIPTION = "";
 }

@@ -1,22 +1,22 @@
 package com.nju.noter.vo;
 
-public class newPasswordVO {
-    int ID;
+public class NewPasswordVO {
+    int id;
     String oldPassword;
     String newPassword;
 
-    public newPasswordVO(int ID, String oldPassword, String newPassword) {
-        this.ID = ID;
+    public NewPasswordVO(int id, String oldPassword, String newPassword) {
+        this.id = id;
         this.oldPassword = oldPassword;
         this.newPassword = newPassword;
     }
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getOldPassword() {

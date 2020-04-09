@@ -9,7 +9,7 @@ public class Note {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    private int ID;
+    private int id;
 
     @Column(name = "title")
     private String title;
@@ -24,38 +24,38 @@ public class Note {
     private Timestamp time;
 
     @Column(name = "uid")
-    private int UID;
+    private int uid;
 
     @Column(name = "nbid")
-    private int NBID;
+    private int nbid;
 
-    public Note(String title, String content, String category, int UID, int NBID) {
+    public Note(String title, String content, String category, int uid, int nbid) {
         this.title = title;
         this.content = content;
         this.category = category;
-        this.UID = UID;
-        this.NBID = NBID;
+        this.uid = uid;
+        this.nbid = nbid;
     }
 
-    public Note(int ID, String title, String content, String category, int UID, int NBID) {
-        this.ID = ID;
+    public Note(int id, String title, String content, String category, int uid, int nbid) {
+        this.id = id;
         this.title = title;
         this.content = content;
         this.category = category;
-        this.UID = UID;
-        this.NBID = NBID;
+        this.uid = uid;
+        this.nbid = nbid;
     }
 
     public Note() {
     }
 
 
-    public int getID() {
-        return ID;
+    public int getId() {
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setId(int ID) {
+        this.id = ID;
     }
 
     public String getTitle() {
@@ -90,32 +90,32 @@ public class Note {
         this.time = time;
     }
 
-    public int getUID() {
-        return UID;
+    public int getUid() {
+        return uid;
     }
 
-    public void setUID(int UID) {
-        this.UID = UID;
+    public void setUid(int UID) {
+        this.uid = UID;
     }
 
-    public int getNBID() {
-        return NBID;
+    public int getNbid() {
+        return nbid;
     }
 
-    public void setNBID(int NBID) {
-        this.NBID = NBID;
+    public void setNbid(int NBID) {
+        this.nbid = NBID;
     }
 
     @Override
     public String toString() {
         return "Note{" +
-                "ID=" + ID +
+                "ID=" + id +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", category='" + category + '\'' +
                 ", time=" + time +
-                ", UID=" + UID +
-                ", NBID=" + NBID +
+                ", UID=" + uid +
+                ", NBID=" + nbid +
                 '}';
     }
 }
