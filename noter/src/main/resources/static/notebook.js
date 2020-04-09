@@ -173,7 +173,7 @@ $('#editButton').click(function () {
         var userId = getCookie('id');
         var row=$("#booktable").bootstrapTable('getSelections');
         var ID = row[0].id;
-        var data = {"ID":ID, "newBookname": newBookname, "newDescription": newDescription,
+        var data = {"id":ID, "newBookname": newBookname, "newDescription": newDescription,
             "oldBookname": newBookname, "oldDescription" : newDescription ,"userId": userId };
         $.ajax({
             type: 'POST',//方法类型
@@ -239,7 +239,7 @@ function userDel() {
     var ID = row[0].id;
     var bookname = row[0].bookname;
     var userId = getCookie('id');
-    var data = {"ID": ID, "bookname": bookname, "userId": userId};
+    var data = {"id": ID, "bookname": bookname, "userId": userId};
 
     swal({
         title: "删除确认",
